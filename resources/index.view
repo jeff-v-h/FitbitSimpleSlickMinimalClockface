@@ -1,6 +1,7 @@
 <svg class="root">
   <circle class="outer-border-circle">
     <circle class="inner-border-circle">
+      <text id="date" />
       <text id="time" />
       <svg class="activity-container">
         <image class="icon steps-icon" href="assets/steps_36px.png" />

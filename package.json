@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "fitbit-build",
-    "debug": "fitbit"
+    "fitbit": "fitbit"
   },
   "devDependencies": {
     "@fitbit/sdk": "~5.0.0",

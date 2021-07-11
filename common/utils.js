@@ -1,7 +1,10 @@
 // Add zero in front of numbers < 10
-export function zeroPad(i) {
+export const zeroPad = (i) => {
   if (i < 10) {
-    i = "0" + i;
+    i = '0' + i;
   }
   return i;
-}
+};
+
+export const MONTH_ABBREVIATIONS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+export const DAY_ABBREVIATIONS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

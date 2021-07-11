@@ -2,8 +2,8 @@
 If other watches are upgraded to be compatible with OS 5, the hard values will need to be altered with percentages via JS) */
 
 .root {
-  viewport-fill: #000;
-  font-family: System-Bold;
+  viewport-fill: #000000;
+  font-family: System-Regular;
 }
 
 circle {
@@ -18,7 +18,16 @@ circle.outer-border-circle {
 
 circle.inner-border-circle {
   r: 148;
-  fill: #000;
+  fill: #000000;
+}
+
+#date {
+  font-size: 20;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 25%;
+  fill: #ffffff;
 }
 
 #time {
@@ -26,8 +35,9 @@ circle.inner-border-circle {
   text-length: 32;
   text-anchor: middle;
   x: 50%;
-  y: 55%;
-  fill: #fff;
+  y: 57%;
+  fill: #ffffff;
+  font-family: System-Bold;
 }
 
 .icon {
@@ -54,11 +64,11 @@ circle.inner-border-circle {
 
 .activity-container .unit {
   font-family: System-Regular;
-  font-size: 22;
+  font-size: 20;
   x: 50%;
   text-length: 32;
   text-anchor: middle;
-  fill: #fff;
+  fill: #ffffff;
 }
 
 /* 
