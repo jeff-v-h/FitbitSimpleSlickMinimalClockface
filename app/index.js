@@ -35,7 +35,6 @@ const setDate = (now) => {
 const setSteps = () => {
   if (userActivityToday.adjusted != null) {
     stepsElement.text = userActivityToday.adjusted.steps;
-    stepsElement.text = 5000;
   } else {
     stepsElement.text = '--';
   }
