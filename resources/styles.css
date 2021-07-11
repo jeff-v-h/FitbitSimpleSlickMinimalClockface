@@ -12,9 +12,23 @@
   fill: white;
 }
 
+.steps-icon {
+  x: 40%;
+  y: 75%;
+  width: 20;
+  height: 20;
+  href: 'assets/steps_36px.png';
+  fill: #0080ff;
+  opacity: 1;
+}
+
 #steps {
-  font-size: 40;
-  x: 50%;
-  y: 70%;
+  font-family: System-Regular;
+  font-size: 20;
+  x: 55%;
+  y: 80%;
+  fill: white;
+  text-length: 32;
+  text-anchor: middle;
   fill: white;
 }
