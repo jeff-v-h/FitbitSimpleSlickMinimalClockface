@@ -1,0 +1,23 @@
+{
+  "devDependencies": {
+    "@fitbit/sdk": "~5.0.0"
+  },
+  "fitbit": {
+    "appUUID": "415d17a5-bf80-48d8-93b0-895f0f7d7c88",
+    "appType": "clockface",
+    "appDisplayName": "Simple Design",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "",
+    "requestedPermissions": [],
+    "buildTargets": [
+      "atlas",
+      "vulcan"
+    ],
+    "i18n": {
+      "en-US": {
+        "name": "Simple Design"
+      }
+    },
+    "defaultLanguage": "en-US"
+  }
+}
