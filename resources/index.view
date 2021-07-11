@@ -1,4 +1,7 @@
 <svg class="root">
   <text id="time" />
-  <image class="steps-icon" /><text id="steps" />
+  <svg class="activity-container">
+    <image class="icon steps-icon" href="assets/steps_36px.png" />
+    <text id="steps" class="unit" />
+  </svg>
 </svg>

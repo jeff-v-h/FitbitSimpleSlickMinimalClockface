@@ -12,23 +12,43 @@
   fill: white;
 }
 
-.steps-icon {
-  x: 40%;
-  y: 75%;
+.icon {
   width: 20;
   height: 20;
-  href: 'assets/steps_36px.png';
-  fill: #0080ff;
   opacity: 1;
 }
 
-#steps {
+.activity-container {
+  x: 35%;
+  y: 75%;
+  width: 40%;
+  height: 20;
+  fill: red;
+}
+
+.activity-container .icon {
+  x: 10%;
+  y: 10%;
+}
+
+.activity-container .steps-icon {
+  fill: #0080ff;
+}
+
+.activity-container .unit {
   font-family: System-Regular;
-  font-size: 20;
-  x: 55%;
-  y: 80%;
-  fill: white;
+  font-size: 22;
+  x: 50%;
   text-length: 32;
   text-anchor: middle;
   fill: white;
 }
+
+/* 
+.inner {
+  width: 100%;
+  height: 100%;
+  x: 0;
+  y: 0;
+  fill: red;
+} */
