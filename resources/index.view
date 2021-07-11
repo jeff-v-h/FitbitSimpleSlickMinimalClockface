@@ -1,7 +1,11 @@
 <svg class="root">
-  <text id="time" />
-  <svg class="activity-container">
-    <image class="icon steps-icon" href="assets/steps_36px.png" />
-    <text id="steps" class="unit" />
-  </svg>
+  <circle class="outer-border-circle">
+    <circle class="inner-border-circle">
+      <text id="time" />
+      <svg class="activity-container">
+        <image class="icon steps-icon" href="assets/steps_36px.png" />
+        <text id="steps" class="unit" />
+      </svg>
+    </circle>
+  </circle>
 </svg>
