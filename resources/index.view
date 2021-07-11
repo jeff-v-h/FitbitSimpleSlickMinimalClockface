@@ -1,3 +1,8 @@
-<svg class="background">
+<svg class="root">
   <text id="time" />
+  <text id="steps" />
+  <!-- <svg id="steps">
+      <text id="stepsText"/>
+      <text id="stepsUnit" class="unit"/>
+    </svg> -->
 </svg>
