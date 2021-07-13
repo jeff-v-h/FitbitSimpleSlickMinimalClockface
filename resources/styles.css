@@ -40,10 +40,8 @@ circle.inner-border-circle {
   font-family: System-Bold;
 }
 
-.icon {
-  width: 20;
-  height: 20;
-  opacity: 1;
+.invisible {
+  visibility: hidden;
 }
 
 .activity-container {
@@ -53,16 +51,30 @@ circle.inner-border-circle {
   height: 20;
 }
 
+.icon {
+  width: 20;
+  height: 20;
+  opacity: 1;
+}
+
 .activity-container .icon {
   x: 10%;
   y: 10%;
 }
 
-.activity-container .steps-icon {
+#steps-container .icon {
   fill: #0080ff;
 }
 
-.activity-container .unit {
+#heart-rate-container .icon {
+  fill: #ff0000;
+}
+
+#calories-container .icon {
+  fill: #ffa500;
+}
+
+.unit {
   font-family: System-Regular;
   font-size: 20;
   x: 50%;
