@@ -5,13 +5,13 @@ import { today as userActivityToday } from 'user-activity';
 import { HeartRateSensor } from 'heart-rate';
 import { BodyPresenceSensor } from 'body-presence';
 import { display } from 'display';
-import { battery } from 'power';
 import { zeroPad, DAY_ABBREVIATIONS, MONTH_ABBREVIATIONS } from '../common/utils';
 
 // Update the clock every minute
 clock.granularity = 'minutes';
 
 // Get a handle on the <text> element
+const rootElement = document.getElementById('root');
 const dateElement = document.getElementById('date');
 const timeElement = document.getElementById('time');
 const stepsElement = document.getElementById('steps');
@@ -70,7 +70,7 @@ const setDate = (now) => {
 const setActivityValue = (element, value) => (element.text = value ?? '--');
 const setSteps = () => setActivityValue(stepsElement, userActivityToday.adjusted?.steps);
 const setHeartRate = () => setActivityValue(heartRateElement, heartRateSensor?.heartRate);
-const setCalories = () => setActivityValue(caloriesElement, userActivityToday.adjusted?.steps);
+const setCalories = () => setActivityValue(caloriesElement, userActivityToday.adjusted?.calories);
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
@@ -80,4 +80,24 @@ clock.ontick = (evt) => {
   setSteps();
   setHeartRate();
   setCalories();
+};
+
+let currentIndex = 0;
+const MEASUREMENT_CONTAINER_IDS = ['steps-container', 'heart-rate-container', 'calories-container'];
+
+const displayNextActvity = () => {
+  const currentId = MEASUREMENT_CONTAINER_IDS[currentIndex];
+  const nextIndex = (currentIndex + 1) % MEASUREMENT_CONTAINER_IDS.length;
+  const nextId = MEASUREMENT_CONTAINER_IDS[nextIndex];
+
+  const currentEle = document.getElementById(currentId);
+  const nextEle = document.getElementById(nextId);
+
+  currentEle.style.visibility = 'hidden';
+  nextEle.style.visibility = 'visible';
+  currentIndex = nextIndex;
+};
+
+rootElement.onclick = () => {
+  displayNextActvity();
 };

@@ -1,7 +1,7 @@
 /* Hard values (such as radius for circle) are made for original Fitbit OS 5 devices (Versa 3 and Sense).
 If other watches are upgraded to be compatible with OS 5, the hard values will need to be altered with percentages via JS) */
 
-.root {
+#root {
   viewport-fill: #000000;
   font-family: System-Regular;
 }
@@ -44,7 +44,7 @@ circle.inner-border-circle {
   visibility: hidden;
 }
 
-.activity-container {
+.measurement-container {
   x: 35%;
   y: 75%;
   width: 40%;
@@ -57,7 +57,7 @@ circle.inner-border-circle {
   opacity: 1;
 }
 
-.activity-container .icon {
+.measurement-container .icon {
   x: 10%;
   y: 10%;
 }
