@@ -12,6 +12,7 @@ clock.granularity = 'minutes';
 
 // Get a handle on the <text> element
 const rootElement = document.getElementById('root');
+const secondsArcElement = document.getElementById('seconds-arc-1');
 const dateElement = document.getElementById('date');
 const timeElement = document.getElementById('time');
 const stepsElement = document.getElementById('steps');
@@ -49,8 +50,8 @@ if (display && heartRateSensor) {
   });
 }
 
-const getHours = (today) => {
-  let hours = today.getHours();
+const getHours = (now) => {
+  let hours = now.getHours();
   return preferences.clockDisplay === '12h' ? hours % 12 || 12 : zeroPad(hours);
 };
 
@@ -60,7 +61,16 @@ const setTime = (now) => {
   timeElement.text = `${hours}:${mins}`;
 };
 
-const setSecondsCircle = (now) => {};
+let num = 6;
+
+const updateSecondsBasedArcs = (now) => {
+  const seconds = now.getSeconds();
+
+  // const sweepAngle = (360 / 60) * seconds;
+
+  // secondsArcElement.setAttribute('sweep-angle', sweepAngle.toString());
+  // secondsArcElement.sweepAngle = (num + 6) % 360;
+};
 
 const setDate = (now) => {
   const day = DAY_ABBREVIATIONS[now.getDay()];
@@ -78,7 +88,7 @@ const setCalories = () => setActivityValue(caloriesElement, userActivityToday.ad
 clock.ontick = (evt) => {
   const now = evt.date;
   setTime(now);
-  setSecondsCircle();
+  updateSecondsBasedArcs(now);
   setDate(now);
   setSteps();
   setHeartRate();

@@ -1,22 +1,257 @@
 <svg id="root">
-  <arc class="faded" x="5%" y="5%" width="90%" height="90%" fill="#003366"
-    arc-width="4" start-angle="0" sweep-angle="360">
-    <arc class="faded" x="5%" y="5%" width="90%" height="90%" fill="#0080ff"
-      arc-width="4" start-angle="0" sweep-angle="90">
-      <text id="date" />
-      <text id="time" />
-      <svg id="steps-container" class="measurement-container">
-        <image class="icon" href="assets/steps_36px.png" />
-        <text id="steps" class="unit" />
-      </svg>
-      <svg id="heart-rate-container" class="measurement-container invisible">
-        <image class="icon" href="assets/heart_rate_36px.png" />
-        <text id="heart-rate" class="unit" />
-      </svg>
-      <svg id="calories-container" class="measurement-container invisible">
-        <image class="icon" href="assets/calories_36px.png" />
-        <text id="calories" class="unit" />
-      </svg>
-    </arc>
+  <arc
+    x="5%" y="5%" width="90%" height="90%" fill="#003366"
+    arc-width="4" start-angle="0" sweep-angle="360"
+  >
+    <text id="date" />
+    <text id="time" />
+    <svg id="steps-container" class="measurement-container">
+      <image class="icon" href="assets/steps_36px.png" />
+      <text id="steps" class="unit" />
+    </svg>
+    <svg id="heart-rate-container" class="measurement-container invisible">
+      <image class="icon" href="assets/heart_rate_36px.png" />
+      <text id="heart-rate" class="unit" />
+    </svg>
+    <svg id="calories-container" class="measurement-container invisible">
+      <image class="icon" href="assets/calories_36px.png" />
+      <text id="calories" class="unit" />
+    </svg>
+    <arc
+      id="seconds-arc-1" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="6"
+    />
+    <arc
+      id="seconds-arc-2" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="12"
+    />
+    <arc
+      id="seconds-arc-3" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="18"
+    />
+    <arc
+      id="seconds-arc-4" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="24"
+    />
+    <arc
+      id="seconds-arc-5" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="30"
+    />
+    <arc
+      id="seconds-arc-6" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="36"
+    />
+    <arc
+      id="seconds-arc-7" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="42"
+    />
+    <arc
+      id="seconds-arc-8" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="48"
+    />
+    <arc
+      id="seconds-arc-9" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="54"
+    />
+    <arc
+      id="seconds-arc-10" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="60"
+    />
+    <arc
+      id="seconds-arc-11" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="66"
+    />
+    <arc
+      id="seconds-arc-12" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="72"
+    />
+    <arc
+      id="seconds-arc-13" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="78"
+    />
+    <arc
+      id="seconds-arc-14" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="84"
+    />
+    <arc
+      id="seconds-arc-15" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="90"
+    />
+    <arc
+      id="seconds-arc-16" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="96"
+    />
+    <arc
+      id="seconds-arc-17" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="102"
+    />
+    <arc
+      id="seconds-arc-18" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="108"
+    />
+    <arc
+      id="seconds-arc-19" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="114"
+    />
+    <arc
+      id="seconds-arc-20" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="120"
+    />
+    <arc
+      id="seconds-arc-21" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="126"
+    />
+    <arc
+      id="seconds-arc-22" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="132"
+    />
+    <arc
+      id="seconds-arc-23" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="138"
+    />
+    <arc
+      id="seconds-arc-24" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="144"
+    />
+    <arc
+      id="seconds-arc-25" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="150"
+    />
+    <arc
+      id="seconds-arc-26" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="156"
+    />
+    <arc
+      id="seconds-arc-27" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="162"
+    />
+    <arc
+      id="seconds-arc-28" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="168"
+    />
+    <arc
+      id="seconds-arc-29" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="174"
+    />
+    <arc
+      id="seconds-arc-30" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="180"
+    />
+    <arc
+      id="seconds-arc-31" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="186"
+    />
+    <arc
+      id="seconds-arc-32" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="192"
+    />
+    <arc
+      id="seconds-arc-33" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="198"
+    />
+    <arc
+      id="seconds-arc-34" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="204"
+    />
+    <arc
+      id="seconds-arc-35" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="210"
+    />
+    <arc
+      id="seconds-arc-36" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="216"
+    />
+    <arc
+      id="seconds-arc-37" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="222"
+    />
+    <arc
+      id="seconds-arc-38" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="228"
+    />
+    <arc
+      id="seconds-arc-39" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="234"
+    />
+    <arc
+      id="seconds-arc-40" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="240"
+    />
+    <arc
+      id="seconds-arc-41" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="246"
+    />
+    <arc
+      id="seconds-arc-42" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="252"
+    />
+    <arc
+      id="seconds-arc-43" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="258"
+    />
+    <arc
+      id="seconds-arc-44" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="264"
+    />
+    <arc
+      id="seconds-arc-45" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="270"
+    />
+    <arc
+      id="seconds-arc-46" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="276"
+    />
+    <arc
+      id="seconds-arc-47" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="282"
+    />
+    <arc
+      id="seconds-arc-48" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="288"
+    />
+    <arc
+      id="seconds-arc-49" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="294"
+    />
+    <arc
+      id="seconds-arc-50" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="300"
+    />
+    <arc
+      id="seconds-arc-51" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="306"
+    />
+    <arc
+      id="seconds-arc-52" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="312"
+    />
+    <arc
+      id="seconds-arc-53" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="318"
+    />
+    <arc
+      id="seconds-arc-54" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="324"
+    />
+    <arc
+      id="seconds-arc-55" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="330"
+    />
+    <arc
+      id="seconds-arc-56" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="336"
+    />
+    <arc
+      id="seconds-arc-57" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="342"
+    />
+    <arc
+      id="seconds-arc-58" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="348"
+    />
+    <arc
+      id="seconds-arc-59" class="invisible" x="5%" y="5%" width="90%" height="90%"
+      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="354"
+    />
   </arc>
 </svg>
