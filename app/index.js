@@ -61,15 +61,19 @@ const setTime = (now) => {
   timeElement.text = `${hours}:${mins}`;
 };
 
-let num = 6;
-
 const updateSecondsBasedArcs = (now) => {
   const seconds = now.getSeconds();
 
-  // const sweepAngle = (360 / 60) * seconds;
+  if (seconds !== 0) {
+    const arcToDisplay = document.getElementById('seconds-arc-' + seconds);
+    arcToDisplay.style.visibility = 'visible';
+  }
 
-  // secondsArcElement.setAttribute('sweep-angle', sweepAngle.toString());
-  // secondsArcElement.sweepAngle = (num + 6) % 360;
+  if (seconds !== 1) {
+    const previousSeconds = seconds === 0 ? 59 : seconds - 1;
+    const arcToHide = document.getElementById('seconds-arc-' + previousSeconds);
+    arcToHide.style.visibility = 'hidden';
+  }
 };
 
 const setDate = (now) => {
