@@ -1,6 +1,8 @@
 <svg id="root">
-  <circle class="outer-border-circle">
-    <circle class="inner-border-circle">
+  <arc class="faded" x="5%" y="5%" width="90%" height="90%" fill="#003366"
+    arc-width="4" start-angle="0" sweep-angle="360">
+    <arc class="faded" x="5%" y="5%" width="90%" height="90%" fill="#0080ff"
+      arc-width="4" start-angle="0" sweep-angle="90">
       <text id="date" />
       <text id="time" />
       <svg id="steps-container" class="measurement-container">
@@ -15,6 +17,6 @@
         <image class="icon" href="assets/calories_36px.png" />
         <text id="calories" class="unit" />
       </svg>
-    </circle>
-  </circle>
+    </arc>
+  </arc>
 </svg>

@@ -60,6 +60,8 @@ const setTime = (now) => {
   timeElement.text = `${hours}:${mins}`;
 };
 
+const setSecondsCircle = (now) => {};
+
 const setDate = (now) => {
   const day = DAY_ABBREVIATIONS[now.getDay()];
   const date = now.getDate();
@@ -76,6 +78,7 @@ const setCalories = () => setActivityValue(caloriesElement, userActivityToday.ad
 clock.ontick = (evt) => {
   const now = evt.date;
   setTime(now);
+  setSecondsCircle();
   setDate(now);
   setSteps();
   setHeartRate();
