@@ -63,16 +63,15 @@ const setTime = (now) => {
 
 const updateSecondsBasedArcs = (now) => {
   const seconds = now.getSeconds();
-
-  if (seconds !== 0) {
-    const arcToDisplay = document.getElementById('seconds-arc-' + seconds);
-    arcToDisplay.style.visibility = 'visible';
-  }
-
   if (seconds !== 1) {
     const previousSeconds = seconds === 0 ? 59 : seconds - 1;
     const arcToHide = document.getElementById('seconds-arc-' + previousSeconds);
     arcToHide.style.visibility = 'hidden';
+  }
+
+  if (seconds !== 0) {
+    const arcToDisplay = document.getElementById('seconds-arc-' + seconds);
+    arcToDisplay.style.visibility = 'visible';
   }
 };
 
