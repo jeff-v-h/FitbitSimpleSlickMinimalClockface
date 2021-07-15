@@ -7,12 +7,11 @@ import { BodyPresenceSensor } from 'body-presence';
 import { display } from 'display';
 import { zeroPad, DAY_ABBREVIATIONS, MONTH_ABBREVIATIONS } from '../common/utils';
 
-// Update the clock every minute
-clock.granularity = 'minutes';
+clock.granularity = 'seconds';
 
 // Get a handle on the <text> element
 const rootElement = document.getElementById('root');
-const secondsArcElement = document.getElementById('seconds-arc-1');
+const secondsArcElement = document.getElementById('seconds-arc');
 const dateElement = document.getElementById('date');
 const timeElement = document.getElementById('time');
 const stepsElement = document.getElementById('steps');
@@ -61,19 +60,7 @@ const setTime = (now) => {
   timeElement.text = `${hours}:${mins}`;
 };
 
-const updateSecondsBasedArcs = (now) => {
-  const seconds = now.getSeconds();
-  if (seconds !== 1) {
-    const previousSeconds = seconds === 0 ? 59 : seconds - 1;
-    const arcToHide = document.getElementById('seconds-arc-' + previousSeconds);
-    arcToHide.style.visibility = 'hidden';
-  }
-
-  if (seconds !== 0) {
-    const arcToDisplay = document.getElementById('seconds-arc-' + seconds);
-    arcToDisplay.style.visibility = 'visible';
-  }
-};
+const updateSecondsBasedArcs = (now) => (secondsArcElement.sweepAngle = (360 / 60) * now.getSeconds());
 
 const setDate = (now) => {
   const day = DAY_ABBREVIATIONS[now.getDay()];
@@ -90,8 +77,8 @@ const setCalories = () => setActivityValue(caloriesElement, userActivityToday.ad
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
   const now = evt.date;
-  setTime(now);
   updateSecondsBasedArcs(now);
+  setTime(now);
   setDate(now);
   setSteps();
   setHeartRate();
