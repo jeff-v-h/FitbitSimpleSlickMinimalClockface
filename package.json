@@ -3,10 +3,6 @@
     "build": "fitbit-build",
     "fitbit": "fitbit"
   },
-  "devDependencies": {
-    "@fitbit/sdk": "~5.0.0",
-    "@fitbit/sdk-cli": "^1.7.3"
-  },
   "fitbit": {
     "appUUID": "415d17a5-bf80-48d8-93b0-895f0f7d7c88",
     "appType": "clockface",
@@ -27,5 +23,9 @@
       }
     },
     "defaultLanguage": "en-US"
+  },
+  "devDependencies": {
+    "@fitbit/sdk": "~5.0.0",
+    "@fitbit/sdk-cli": "^1.7.3"
   }
 }

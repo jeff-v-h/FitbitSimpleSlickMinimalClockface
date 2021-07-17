@@ -1,7 +1,7 @@
 <svg id="root">
   <arc
-    x="5%" y="5%" width="90%" height="90%" fill="#003366"
-    arc-width="4" start-angle="0" sweep-angle="360"
+    id="seconds-background-arc" x="5%" y="5%" width="90%" height="90%"
+    fill="#003366" arc-width="4" start-angle="0" sweep-angle="360"
   >
     <arc
       id="seconds-arc" x="5%" y="5%" width="90%" height="90%"
