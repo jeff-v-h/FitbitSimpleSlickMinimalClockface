@@ -23,3 +23,6 @@ export const ARC_COLOURS = {
   [heartRateId]: '#ff0000',
   [caloriesId]: '#ffa500'
 };
+
+// Settings keys
+export const BACKGROUND_COLOUR_KEY = 'background-colour';

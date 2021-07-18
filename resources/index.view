@@ -1,26 +1,28 @@
 <svg id="root">
-  <arc
-    id="seconds-background-arc" x="5%" y="5%" width="90%" height="90%"
-    fill="#003366" arc-width="4" start-angle="0" sweep-angle="360"
-  >
+  <rect id="background">
     <arc
-      id="seconds-arc" x="5%" y="5%" width="90%" height="90%"
-      fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="6"
+      id="seconds-background-arc" x="5%" y="5%" width="90%" height="90%"
+      fill="#003366" arc-width="4" start-angle="0" sweep-angle="360"
     >
-      <text id="date" />
-      <text id="time" />
-      <svg id="steps-container" class="measurement-container">
-        <image class="icon" href="assets/steps_36px.png" />
-        <text id="steps" class="unit" />
-      </svg>
-      <svg id="heart-rate-container" class="measurement-container invisible">
-        <image class="icon" href="assets/heart_rate_36px.png" />
-        <text id="heart-rate" class="unit" />
-      </svg>
-      <svg id="calories-container" class="measurement-container invisible" >
-        <image class="icon" href="assets/calories_36px.png" />
-        <text id="calories" class="unit" />
-      </svg>
+      <arc
+        id="seconds-arc" x="5%" y="5%" width="90%" height="90%"
+        fill="#0080ff" arc-width="4" start-angle="0" sweep-angle="6"
+      >
+        <text id="date" />
+        <text id="time" />
+        <svg id="steps-container" class="measurement-container">
+          <image class="icon" href="assets/steps_36px.png" />
+          <text id="steps" class="unit" />
+        </svg>
+        <svg id="heart-rate-container" class="measurement-container invisible">
+          <image class="icon" href="assets/heart_rate_36px.png" />
+          <text id="heart-rate" class="unit" />
+        </svg>
+        <svg id="calories-container" class="measurement-container invisible" >
+          <image class="icon" href="assets/calories_36px.png" />
+          <text id="calories" class="unit" />
+        </svg>
+      </arc>
     </arc>
-  </arc>
+  </rect>
 </svg>
