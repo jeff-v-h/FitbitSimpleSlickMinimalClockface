@@ -1,5 +1,5 @@
 import document from 'document';
-import { MEASUREMENT_CONTAINER_IDS, ARC_COLOURS, BACKGROUND_ARC_COLOURS } from '../../common/utils';
+import { MEASUREMENT_CONTAINER_IDS, ARC_COLOURS, BACKGROUND_ARC_COLOURS } from '../../common/constants';
 
 const initiateClickEvents = () => {
   const rootElement = document.getElementById('root');

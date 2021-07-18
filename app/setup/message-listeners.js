@@ -1,12 +1,12 @@
 import * as messaging from 'messaging';
 import document from 'document';
-import { BACKGROUND_COLOUR_KEY } from '../../common/utils';
+import { settingsKeys } from '../../common/constants';
 
 const initiateMessageListeners = () => {
   const backgroundElement = document.getElementById('background');
 
   messaging.peerSocket.addEventListener('message', (evt) => {
-    if (evt && evt.data && evt.data.key === BACKGROUND_COLOUR_KEY) {
+    if (evt && evt.data && evt.data.key === settingsKeys.backgroundColour) {
       backgroundElement.style.fill = evt.data.value;
     }
   });

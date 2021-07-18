@@ -1,7 +1,7 @@
 import { me as companion } from 'companion';
 import { settingsStorage } from 'settings';
 import * as messaging from 'messaging';
-import { BACKGROUND_COLOUR_KEY } from '../common/utils';
+import { settingskeys } from '../common/constants';
 
 const sendSettingData = (data) => {
   // If we have a MessageSocket, send the data to the device
@@ -25,5 +25,5 @@ settingsStorage.addEventListener('change', (evt) => {
 // Settings were changed while the companion was not running
 if (companion.launchReasons.settingsChanged) {
   // Send the value of the setting
-  sendValue(BACKGROUND_COLOUR_KEY, settingsStorage.getItem(BACKGROUND_COLOUR_KEY));
+  sendValue(settingskeys.backgroundColour, settingsStorage.getItem(settingskeys.backgroundColour));
 }

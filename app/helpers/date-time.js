@@ -1,6 +1,7 @@
 import document from 'document';
 import { preferences } from 'user-settings';
-import { zeroPad, DAY_ABBREVIATIONS, MONTH_ABBREVIATIONS } from '../../common/utils';
+import { zeroPad } from '../../common/utils';
+import { DAY_ABBREVIATIONS, MONTH_ABBREVIATIONS } from '../../common/constants';
 
 const secondsArcElement = document.getElementById('seconds-arc');
 const dateElement = document.getElementById('date');
