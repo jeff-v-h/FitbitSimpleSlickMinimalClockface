@@ -1,4 +1,4 @@
-import document from 'document';
+import * as document from 'document';
 import { today as userActivityToday } from 'user-activity';
 import { HeartRateSensor } from 'heart-rate';
 import { BodyPresenceSensor } from 'body-presence';

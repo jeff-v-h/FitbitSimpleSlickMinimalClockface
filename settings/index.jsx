@@ -28,9 +28,21 @@ function SettingsPage(props) {
           ]}
         />
       </Section>
-      <Section title={getSectionTitle('Text')}>
+      <Section title={getSectionTitle('Date')}>
         <ColorSelect
-          settingsKey={settingsKeys.textColour}
+          settingsKey={settingsKeys.dateTextColour}
+          colors={[
+            { color: '#000000' },
+            { color: '#ffffff' },
+            { color: '#0080ff' },
+            { color: '#ff0000' },
+            { color: '#ffa500' }
+          ]}
+        />
+      </Section>
+      <Section title={getSectionTitle('Time')}>
+        <ColorSelect
+          settingsKey={settingsKeys.timeColour}
           colors={[
             { color: '#000000' },
             { color: '#ffffff' },
