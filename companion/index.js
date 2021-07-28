@@ -37,4 +37,10 @@ if (companion.launchReasons.settingsChanged) {
   sendValue(backgroundColour, settingsStorage.getItem(backgroundColour));
   sendValue(dateTextColour, settingsStorage.getItem(dateTextColour));
   sendValue(timeColour, settingsStorage.getItem(timeColour));
+  // TODO send colour immediately from here? improve concerns
+  sendValue(dynamicSecondsColour, {
+    isDynamic: settingsStorage.getItem(dynamicSecondsColour),
+    secondsColour: settingsStorage.getItem(secondsColour)
+  });
+  sendValue(secondsColour, settingsStorage.getItem(secondsColour));
 }

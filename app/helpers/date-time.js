@@ -3,7 +3,7 @@ import { preferences } from 'user-settings';
 import { zeroPad } from '../../common/utils';
 import { DAY_ABBREVIATIONS, MONTH_ABBREVIATIONS } from '../../common/constants';
 
-const secondsArcElement = document.getElementById('seconds-arc');
+const secondsArc = document.getElementById('seconds-arc');
 const dateElement = document.getElementById('date');
 const timeElement = document.getElementById('time');
 
@@ -18,7 +18,7 @@ export const setTime = (now) => {
   timeElement.text = `${hours}:${mins}`;
 };
 
-export const updateSecondsBasedArc = (now) => (secondsArcElement.sweepAngle = (360 / 60) * now.getSeconds());
+export const updateSecondsBasedArc = (now) => (secondsArc.sweepAngle = (360 / 60) * now.getSeconds());
 
 export const setDate = (now) => {
   const day = DAY_ABBREVIATIONS[now.getDay()];

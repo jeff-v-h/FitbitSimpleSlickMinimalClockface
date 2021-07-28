@@ -1,11 +1,11 @@
 import * as document from 'document';
-import { MEASUREMENT_CONTAINER_IDS, ARC_COLOURS, BACKGROUND_ARC_COLOURS } from '../../common/constants';
+import state from '../../common/state';
+import { BACKGROUND_ARC_COLOURS, ARC_COLOURS } from '../../common/constants';
 
 const initiateClickEvents = () => {
   const rootElement = document.getElementById('root');
   const secondsBackgroundArc = document.getElementById('seconds-background-arc');
   const secondsArc = document.getElementById('seconds-arc');
-  let currentIndex = 0;
 
   const setMeasurementsVisibility = (currentId, nextId) => {
     const currentEle = document.getElementById(currentId);
@@ -21,13 +21,15 @@ const initiateClickEvents = () => {
   };
 
   const displayNextActvity = () => {
-    const currentId = MEASUREMENT_CONTAINER_IDS[currentIndex];
-    const nextIndex = (currentIndex + 1) % MEASUREMENT_CONTAINER_IDS.length;
-    const nextId = MEASUREMENT_CONTAINER_IDS[nextIndex];
+    const { measurementContainerIds, currentMeasurementId } = state;
+    const currentIndex = measurementContainerIds.findIndex(currentMeasurementId);
+    const currentId = state.measurementContainerIds[currentIndex];
+    const nextIndex = (currentIndex + 1) % measurementContainerIds.length;
+    const nextId = measurementContainerIds[nextIndex];
 
     setMeasurementsVisibility(currentId, nextId);
     setArcColours(nextId);
-    currentIndex = nextIndex;
+    currentMeasurementId = nextId;
   };
 
   rootElement.onclick = () => {
