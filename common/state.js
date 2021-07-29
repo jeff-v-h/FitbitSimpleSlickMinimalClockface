@@ -7,7 +7,7 @@ const state = {
     MEASUREMENT_CONTAINER_IDS.heartRate,
     MEASUREMENT_CONTAINER_IDS.calories
   ],
-  currentMeasurementId: MEASUREMENT_CONTAINER_IDS.steps
+  currentMeasurementIndex: 0
 };
 
 export default state;
