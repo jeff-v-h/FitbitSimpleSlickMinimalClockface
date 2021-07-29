@@ -21,15 +21,16 @@ const initiateClickEvents = () => {
   };
 
   const displayNextActvity = () => {
-    const { measurementContainerIds, currentMeasurementId } = state;
-    const currentIndex = measurementContainerIds.findIndex(currentMeasurementId);
-    const currentId = state.measurementContainerIds[currentIndex];
-    const nextIndex = (currentIndex + 1) % measurementContainerIds.length;
+    const { measurementContainerIds, currentMeasurementIndex, isDynamicSecondsColour } = state;
+    const currentId = measurementContainerIds[currentMeasurementIndex];
+    const nextIndex = (currentMeasurementIndex + 1) % measurementContainerIds.length;
     const nextId = measurementContainerIds[nextIndex];
 
     setMeasurementsVisibility(currentId, nextId);
-    setArcColours(nextId);
-    currentMeasurementId = nextId;
+    if (isDynamicSecondsColour) {
+      setArcColours(nextId);
+    }
+    state.currentMeasurementIndex = nextIndex;
   };
 
   rootElement.onclick = () => {
