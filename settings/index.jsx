@@ -1,4 +1,4 @@
-import { SETTINGS_KEYS } from '../common/constants';
+import { SETTINGS_KEYS, COLOURS } from '../common/constants';
 
 const getSectionTitle = (title) => (
   <Text bold align="left">
@@ -7,43 +7,38 @@ const getSectionTitle = (title) => (
 );
 
 function SettingsPage(props) {
+  const { black, white, red, blue, orange } = COLOURS;
+  const {
+    backgroundColour,
+    dynamicSecondsColour,
+    secondsColour,
+    dateTextColour,
+    timeColour,
+    measurementTextColour,
+    measurementsDisplayed
+  } = SETTINGS_KEYS;
+
   return (
     <Page>
       <Section title={getSectionTitle('Background')}>
-        <ColorSelect
-          settingsKey={SETTINGS_KEYS.backgroundColour}
-          colors={[{ color: '#000000' }, { color: '#ffffff' }]}
-        />
+        <ColorSelect settingsKey={backgroundColour} colors={[{ color: black }, { color: white }]} />
       </Section>
       <Section title={getSectionTitle('Seconds Circle')}>
-        <Toggle settingsKey={SETTINGS_KEYS.dynamicSecondsColour} label="Same colour as measurement shown" />
-        <ColorSelect
-          settingsKey={SETTINGS_KEYS.secondsColour}
-          colors={[{ color: '#0080ff' }, { color: '#ff0000' }, { color: '#ffa500' }]}
-        />
+        <Toggle settingsKey={dynamicSecondsColour} label="Same colour as displayed measurement" />
+        {props.settings[dynamicSecondsColour] === 'false' && (
+          <ColorSelect settingsKey={secondsColour} colors={[{ color: blue }, { color: red }, { color: orange }]} />
+        )}
       </Section>
       <Section title={getSectionTitle('Date')}>
         <ColorSelect
-          settingsKey={SETTINGS_KEYS.dateTextColour}
-          colors={[
-            { color: '#000000' },
-            { color: '#ffffff' },
-            { color: '#0080ff' },
-            { color: '#ff0000' },
-            { color: '#ffa500' }
-          ]}
+          settingsKey={dateTextColour}
+          colors={[{ color: black }, { color: white }, { color: blue }, { color: red }, { color: orange }]}
         />
       </Section>
       <Section title={getSectionTitle('Time')}>
         <ColorSelect
-          settingsKey={SETTINGS_KEYS.timeColour}
-          colors={[
-            { color: '#000000' },
-            { color: '#ffffff' },
-            { color: '#0080ff' },
-            { color: '#ff0000' },
-            { color: '#ffa500' }
-          ]}
+          settingsKey={timeColour}
+          colors={[{ color: black }, { color: white }, { color: blue }, { color: red }, { color: orange }]}
         />
       </Section>
       <Section title={getSectionTitle('Measurements')}>
