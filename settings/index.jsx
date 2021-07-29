@@ -1,4 +1,4 @@
-import { settingsKeys } from '../common/constants';
+import { SETTINGS_KEYS } from '../common/constants';
 
 const getSectionTitle = (title) => (
   <Text bold align="left">
@@ -11,26 +11,20 @@ function SettingsPage(props) {
     <Page>
       <Section title={getSectionTitle('Background')}>
         <ColorSelect
-          settingsKey={settingsKeys.backgroundColour}
+          settingsKey={SETTINGS_KEYS.backgroundColour}
           colors={[{ color: '#000000' }, { color: '#ffffff' }]}
         />
       </Section>
       <Section title={getSectionTitle('Seconds Circle')}>
-        <Toggle settingsKey={settingsKeys.dynamicSecondsColour} label="Same colour as measurement shown" />
+        <Toggle settingsKey={SETTINGS_KEYS.dynamicSecondsColour} label="Same colour as measurement shown" />
         <ColorSelect
-          settingsKey={settingsKeys.secondsColour}
-          colors={[
-            { color: '#000000' },
-            { color: '#ffffff' },
-            { color: '#0080ff' },
-            { color: '#ff0000' },
-            { color: '#ffa500' }
-          ]}
+          settingsKey={SETTINGS_KEYS.secondsColour}
+          colors={[{ color: '#0080ff' }, { color: '#ff0000' }, { color: '#ffa500' }]}
         />
       </Section>
       <Section title={getSectionTitle('Date')}>
         <ColorSelect
-          settingsKey={settingsKeys.dateTextColour}
+          settingsKey={SETTINGS_KEYS.dateTextColour}
           colors={[
             { color: '#000000' },
             { color: '#ffffff' },
@@ -42,7 +36,7 @@ function SettingsPage(props) {
       </Section>
       <Section title={getSectionTitle('Time')}>
         <ColorSelect
-          settingsKey={settingsKeys.timeColour}
+          settingsKey={SETTINGS_KEYS.timeColour}
           colors={[
             { color: '#000000' },
             { color: '#ffffff' },
@@ -54,7 +48,7 @@ function SettingsPage(props) {
       </Section>
       <Section title={getSectionTitle('Measurements')}>
         <AdditiveList
-          settingsKey={settingsKeys}
+          settingsKey={SETTINGS_KEYS}
           addAction={
             <Select
               label="Select measurements"
