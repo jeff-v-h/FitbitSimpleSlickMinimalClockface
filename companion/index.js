@@ -1,7 +1,7 @@
 import { me as companion } from 'companion';
 import { settingsStorage } from 'settings';
 import * as messaging from 'messaging';
-import { SETTINGS_KEYS } from '../common/constants';
+import { COLOURS, SETTINGS_KEYS } from '../common/constants';
 
 const {
   backgroundColour,
@@ -32,7 +32,9 @@ const sendSettingsKeyValue = (key) => sendValue(key, settingsStorage.getItem(key
 
 const sendAdditionalData = (key) => {
   if (key === dynamicSecondsColour) {
-    sendSettingsKeyValue(secondsColour);
+    const colour = settingsStorage.getItem(secondsColour);
+    // colour = `{ "isDynamic": true, "secondsColour": "${COLOURS.blue}" }`;
+    sendValue(secondsColour, colour ?? `"${COLOURS.blue}"`);
   }
 };
 
