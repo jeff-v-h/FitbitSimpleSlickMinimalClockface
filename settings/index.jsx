@@ -7,6 +7,7 @@ const getSectionTitle = (title) => (
 );
 
 function SettingsPage(props) {
+  const colourTitleWord = 'Colour';
   const { black, white, red, blue, orange } = COLOURS;
   const {
     backgroundColour,
@@ -20,28 +21,28 @@ function SettingsPage(props) {
 
   return (
     <Page>
-      <Section title={getSectionTitle('Background')}>
+      <Section title={getSectionTitle('Background ' + colourTitleWord)}>
         <ColorSelect settingsKey={backgroundColour} colors={[{ color: black }, { color: white }]} />
       </Section>
-      <Section title={getSectionTitle('Seconds Circle')}>
-        <Toggle settingsKey={dynamicSecondsColour} label="Same colour as displayed measurement" />
+      <Section title={getSectionTitle('Seconds Circle ' + colourTitleWord)}>
+        <Toggle settingsKey={dynamicSecondsColour} label="Match displayed measurement" />
         {props.settings[dynamicSecondsColour] === 'false' && (
           <ColorSelect settingsKey={secondsColour} colors={[{ color: blue }, { color: red }, { color: orange }]} />
         )}
       </Section>
-      <Section title={getSectionTitle('Date')}>
+      <Section title={getSectionTitle('Date ' + colourTitleWord)}>
         <ColorSelect
           settingsKey={dateTextColour}
           colors={[{ color: black }, { color: white }, { color: blue }, { color: red }, { color: orange }]}
         />
       </Section>
-      <Section title={getSectionTitle('Time')}>
+      <Section title={getSectionTitle('Time ' + colourTitleWord)}>
         <ColorSelect
           settingsKey={timeColour}
           colors={[{ color: black }, { color: white }, { color: blue }, { color: red }, { color: orange }]}
         />
       </Section>
-      <Section title={getSectionTitle('Measurements')}>
+      <Section title={getSectionTitle('Measurements ' + colourTitleWord)}>
         <AdditiveList
           settingsKey={SETTINGS_KEYS}
           addAction={
