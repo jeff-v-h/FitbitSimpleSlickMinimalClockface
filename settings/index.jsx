@@ -24,12 +24,6 @@ function SettingsPage(props) {
       <Section title={getSectionTitle('Background ' + colourTitleWord)}>
         <ColorSelect settingsKey={backgroundColour} colors={[{ color: black }, { color: white }]} />
       </Section>
-      <Section title={getSectionTitle('Seconds Circle ' + colourTitleWord)}>
-        <Toggle settingsKey={dynamicSecondsColour} label="Match displayed measurement" />
-        {props.settings[dynamicSecondsColour] === 'false' && (
-          <ColorSelect settingsKey={secondsColour} colors={[{ color: blue }, { color: red }, { color: orange }]} />
-        )}
-      </Section>
       <Section title={getSectionTitle('Date ' + colourTitleWord)}>
         <ColorSelect
           settingsKey={dateTextColour}
@@ -47,6 +41,12 @@ function SettingsPage(props) {
           settingsKey={measurementTextColour}
           colors={[{ color: white }, { color: black }, { color: blue }, { color: red }, { color: orange }]}
         />
+      </Section>
+      <Section title={getSectionTitle('Seconds Circle ' + colourTitleWord)}>
+        <Toggle settingsKey={dynamicSecondsColour} label="Match displayed measurement" />
+        {props.settings[dynamicSecondsColour] === 'false' && (
+          <ColorSelect settingsKey={secondsColour} colors={[{ color: blue }, { color: red }, { color: orange }]} />
+        )}
       </Section>
       <Section title={getSectionTitle('Measurement List')}>
         <AdditiveList
