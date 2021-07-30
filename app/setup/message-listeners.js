@@ -1,48 +1,59 @@
 import * as messaging from 'messaging';
-import * as document from 'document';
-import { SETTINGS_KEYS } from '../../common/constants';
+import { getElementById } from '../../common/utils';
+import { SETTINGS_KEYS, COLOURS, ARC_COLOURS, BACKGROUND_ARC_COLOURS } from '../../common/constants';
 import state from '../../common/state';
-import { COLOURS } from '../../common/constants';
 
 const initiateMessageListeners = () => {
+  const arcMainToBackgroundColourMap = {
+    [COLOURS.red]: COLOURS.darkRed,
+    [COLOURS.blue]: COLOURS.darkBlue,
+    [COLOURS.orange]: COLOURS.darkOrange
+  };
+
   messaging.peerSocket.addEventListener('message', (evt) => {
     if (evt && evt.data) {
-      const arcMainToBackgroundColourMap = {
-        [COLOURS.red]: COLOURS.darkRed,
-        [COLOURS.blue]: COLOURS.darkBlue,
-        [COLOURS.orange]: COLOURS.darkOrange
-      };
       const { key, value } = evt.data;
 
       if (key === SETTINGS_KEYS.backgroundColour) {
-        const backgroundElement = document.getElementById('background');
+        const backgroundElement = getElementById('background');
         backgroundElement.style.fill = value;
         return;
       }
 
-      if (key === SETTINGS_KEYS.dynamicSecondsColour) {
-        state.isDynamicSecondsColour = value.isDynamic;
-        return;
-      }
-
-      if (key === SETTINGS_KEYS.secondsColour) {
-        const secondsBackgroundArc = document.getElementById('seconds-background-arc');
-        const secondsArc = document.getElementById('seconds-arc');
-
-        secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value];
-        secondsArc.style.fill = value;
-        return;
-      }
-
       if (key === SETTINGS_KEYS.dateTextColour) {
-        const dateElement = document.getElementById('date');
+        const dateElement = getElementById('date');
         dateElement.style.fill = value;
         return;
       }
 
       if (key === SETTINGS_KEYS.timeColour) {
-        const dateElement = document.getElementById('time');
+        const dateElement = getElementById('time');
         dateElement.style.fill = value;
+        return;
+      }
+
+      const secondsArc = getElementById('seconds-arc');
+      const secondsBackgroundArc = getElementById('seconds-background-arc');
+
+      if (key === SETTINGS_KEYS.dynamicSecondsColour) {
+        state.isDynamicSecondsColour = value.isDynamic;
+
+        if (value.isDynamic) {
+          const currentMeasurement = state.measurementContainerIds[state.currentMeasurementIndex];
+          secondsArc.style.fill = ARC_COLOURS[currentMeasurement];
+          secondsBackgroundArc.style.fill = BACKGROUND_ARC_COLOURS[currentMeasurement];
+          return;
+        }
+
+        secondsArc.style.fill = value.secondsColour;
+        secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value.secondsColour];
+
+        return;
+      }
+
+      if (key === SETTINGS_KEYS.secondsColour) {
+        secondsArc.style.fill = value;
+        secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value];
         return;
       }
     }

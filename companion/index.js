@@ -29,19 +29,22 @@ const sendValue = (key, val) => {
 };
 
 const sendSettingsKeyValue = (key) => sendValue(key, settingsStorage.getItem(key));
-
-const sendAdditionalData = (key) => {
-  if (key === dynamicSecondsColour) {
-    const colour = settingsStorage.getItem(secondsColour);
-    // colour = `{ "isDynamic": true, "secondsColour": "${COLOURS.blue}" }`;
-    sendValue(secondsColour, colour ?? `"${COLOURS.blue}"`);
-  }
+const sendDynamicSecondsData = (val) => {
+  const colour = settingsStorage.getItem(secondsColour);
+  const valueToSend = `{ "isDynamic": ${val}, "secondsColour": ${colour ?? `"${COLOURS.blue}"`} }`;
+  sendValue(dynamicSecondsColour, valueToSend);
 };
 
 // Settings have been changed
 settingsStorage.addEventListener('change', (evt) => {
-  sendValue(evt.key, evt.newValue);
-  sendAdditionalData(evt.key);
+  switch (evt.key) {
+    case dynamicSecondsColour:
+      sendDynamicSecondsData(evt.newValue);
+      break;
+    default:
+      sendValue(evt.key, evt.newValue);
+      break;
+  }
 });
 
 // Settings were changed while the companion was not running
@@ -50,6 +53,5 @@ if (companion.launchReasons.settingsChanged) {
   sendSettingsKeyValue(backgroundColour);
   sendSettingsKeyValue(dateTextColour);
   sendSettingsKeyValue(timeColour);
-  sendSettingsKeyValue(dynamicSecondsColour);
-  sendSettingsKeyValue(secondsColour);
+  sendDynamicSecondsData();
 }
