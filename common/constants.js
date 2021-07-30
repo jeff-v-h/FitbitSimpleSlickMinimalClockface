@@ -13,27 +13,27 @@ export const COLOURS = Object.freeze({
 });
 
 export const MEASUREMENT_CONTAINER_IDS = Object.freeze({
-  steps: 'steps-container',
   heartRate: 'heart-rate-container',
+  steps: 'steps-container',
   calories: 'calories-container'
 });
 
-export const BACKGROUND_ARC_COLOURS = Object.freeze({
-  [MEASUREMENT_CONTAINER_IDS.steps]: COLOURS.darkBlue,
-  [MEASUREMENT_CONTAINER_IDS.heartRate]: COLOURS.darkRed,
-  [MEASUREMENT_CONTAINER_IDS.calories]: COLOURS.darkOrange
-});
 export const ARC_COLOURS = Object.freeze({
-  [MEASUREMENT_CONTAINER_IDS.steps]: COLOURS.blue,
   [MEASUREMENT_CONTAINER_IDS.heartRate]: COLOURS.red,
+  [MEASUREMENT_CONTAINER_IDS.steps]: COLOURS.blue,
   [MEASUREMENT_CONTAINER_IDS.calories]: COLOURS.orange
+});
+export const BACKGROUND_ARC_COLOURS = Object.freeze({
+  [MEASUREMENT_CONTAINER_IDS.heartRate]: COLOURS.darkRed,
+  [MEASUREMENT_CONTAINER_IDS.steps]: COLOURS.darkBlue,
+  [MEASUREMENT_CONTAINER_IDS.calories]: COLOURS.darkOrange
 });
 
 // Settings keys
 export const SETTINGS_KEYS = Object.freeze({
   backgroundColour: 'background-colour',
-  dynamicSecondsColour: 'dynamic-seconds-colour',
   secondsColour: 'seconds-colour',
+  dynamicSecondsColour: 'dynamic-seconds-colour',
   dateTextColour: 'date-text-colour',
   timeColour: 'time-colour',
   measurementTextColour: 'measurement-text-colour',

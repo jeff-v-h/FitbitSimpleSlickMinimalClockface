@@ -31,7 +31,7 @@ const sendValue = (key, val) => {
 const sendSettingsKeyValue = (key) => sendValue(key, settingsStorage.getItem(key));
 const sendDynamicSecondsData = (val) => {
   const colour = settingsStorage.getItem(secondsColour);
-  const valueToSend = `{ "isDynamic": ${val}, "secondsColour": ${colour ?? `"${COLOURS.blue}"`} }`;
+  const valueToSend = `{ "isDynamic": ${val}, "secondsColour": ${colour ?? `"${COLOURS.red}"`} }`;
   sendValue(dynamicSecondsColour, valueToSend);
 };
 

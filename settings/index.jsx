@@ -33,21 +33,21 @@ function SettingsPage(props) {
       <Section title={getSectionTitle('Date ' + colourTitleWord)}>
         <ColorSelect
           settingsKey={dateTextColour}
-          colors={[{ color: black }, { color: white }, { color: blue }, { color: red }, { color: orange }]}
+          colors={[{ color: white }, { color: black }, { color: blue }, { color: red }, { color: orange }]}
         />
       </Section>
       <Section title={getSectionTitle('Time ' + colourTitleWord)}>
         <ColorSelect
           settingsKey={timeColour}
-          colors={[{ color: black }, { color: white }, { color: blue }, { color: red }, { color: orange }]}
+          colors={[{ color: white }, { color: black }, { color: blue }, { color: red }, { color: orange }]}
         />
       </Section>
-      <Section title={getSectionTitle('Measurements ' + colourTitleWord)}>
+      <Section title={getSectionTitle('Measurements')}>
         <AdditiveList
           settingsKey={SETTINGS_KEYS}
           addAction={
             <Select
-              label="Select measurements"
+              label="Select what can be displayed"
               options={[{ name: 'Heart rate' }, { name: 'Steps' }, { name: 'Calories' }]}
             />
           }
