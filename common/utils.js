@@ -9,3 +9,4 @@ export const zeroPad = (i) => {
 };
 
 export const getElementById = (id) => document.getElementById(id);
+export const getElementsByClassName = (name) => document.getElementsByClassName(name);

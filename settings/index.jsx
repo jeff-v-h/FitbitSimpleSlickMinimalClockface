@@ -42,7 +42,13 @@ function SettingsPage(props) {
           colors={[{ color: white }, { color: black }, { color: blue }, { color: red }, { color: orange }]}
         />
       </Section>
-      <Section title={getSectionTitle('Measurements')}>
+      <Section title={getSectionTitle('Measurement Text ' + colourTitleWord)}>
+        <ColorSelect
+          settingsKey={measurementTextColour}
+          colors={[{ color: white }, { color: black }, { color: blue }, { color: red }, { color: orange }]}
+        />
+      </Section>
+      <Section title={getSectionTitle('Measurement List')}>
         <AdditiveList
           settingsKey={SETTINGS_KEYS}
           addAction={

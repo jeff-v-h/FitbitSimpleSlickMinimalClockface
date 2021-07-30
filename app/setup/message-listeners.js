@@ -1,5 +1,5 @@
 import * as messaging from 'messaging';
-import { getElementById } from '../../common/utils';
+import { getElementById, getElementsByClassName } from '../../common/utils';
 import { SETTINGS_KEYS, COLOURS, ARC_COLOURS, BACKGROUND_ARC_COLOURS } from '../../common/constants';
 import state from '../../common/state';
 
@@ -27,8 +27,14 @@ const initiateMessageListeners = () => {
       }
 
       if (key === SETTINGS_KEYS.timeColour) {
-        const dateElement = getElementById('time');
-        dateElement.style.fill = value;
+        const timeElement = getElementById('time');
+        timeElement.style.fill = value;
+        return;
+      }
+
+      if (key === SETTINGS_KEYS.measurementTextColour) {
+        const measurementElements = getElementsByClassName('unit');
+        measurementElements.forEach((e) => (e.style.fill = value));
         return;
       }
 
