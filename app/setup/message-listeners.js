@@ -75,7 +75,6 @@ const initiateMessageListeners = () => {
         console.log(JSON.stringify(value));
         state.measurementContainerIds = value.values.map((v) => v.value);
         console.log(state.measurementContainerIds);
-        // state.measurementContainerIds = [];
         return;
       }
 
