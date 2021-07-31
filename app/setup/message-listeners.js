@@ -10,33 +10,26 @@ const initiateMessageListeners = () => {
     [COLOURS.orange]: COLOURS.darkOrange
   };
 
-  const handleDynamicMeasurementTextColourEvent = (value) => {
+  const handleDynamicMeasurementTextColourEvent = (isDynamic, measurementTextColour) => {
     const measurementTextElements = getElementsByClassName('unit');
-    const currentMeasurement = state.measurementContainerIds[state.currentMeasurementIndex];
-    state.isDynamicMeasurementTextColour = value.isDynamic;
+    const { measurementContainerIds, currentMeasurementIndex } = state;
+    const currentMeasurement = measurementContainerIds[currentMeasurementIndex];
 
-    if (value.isDynamic) {
-      measurementTextElements.forEach((e) => (e.style.fill = MEASUREMENT_COLOURS[currentMeasurement]));
-      return;
-    }
-
-    measurementTextElements.forEach((e) => (e.style.fill = value.measurementTextColour));
+    measurementTextElements.forEach(
+      (e) => (e.style.fill = isDynamic ? MEASUREMENT_COLOURS[currentMeasurement] : measurementTextColour)
+    );
   };
 
-  const handleDynamicSecondsColourEvent = (value) => {
+  const handleDynamicSecondsColourEvent = (isDynamic, secondsColour) => {
     const secondsArc = getElementById('seconds-arc');
     const secondsBackgroundArc = getElementById('seconds-background-arc');
-    const currentMeasurement = state.measurementContainerIds[state.currentMeasurementIndex];
-    state.isDynamicSecondsColour = value.isDynamic;
+    const { measurementContainerIds, currentMeasurementIndex } = state;
+    const currentMeasurement = measurementContainerIds[currentMeasurementIndex];
 
-    if (value.isDynamic) {
-      secondsArc.style.fill = MEASUREMENT_COLOURS[currentMeasurement];
-      secondsBackgroundArc.style.fill = DARK_MEASUREMENT_COLOURS[currentMeasurement];
-      return;
-    }
-
-    secondsArc.style.fill = value.secondsColour;
-    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value.secondsColour];
+    secondsArc.style.fill = isDynamic ? MEASUREMENT_COLOURS[currentMeasurement] : secondsColour;
+    secondsBackgroundArc.style.fill = isDynamic
+      ? DARK_MEASUREMENT_COLOURS[currentMeasurement]
+      : arcMainToBackgroundColourMap[secondsColour];
     return;
   };
 
@@ -46,6 +39,34 @@ const initiateMessageListeners = () => {
     secondsArc.style.fill = value;
     secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value];
     return;
+  };
+
+  const updateMeasurementDependentColours = () => {
+    if (state.isDynamicMeasurementTextColour) {
+      handleDynamicMeasurementTextColourEvent(true);
+    }
+
+    if (state.isDynamicSecondsColour) {
+      handleDynamicSecondsColourEvent(true);
+    }
+  };
+
+  const updateForNoDisplayedMeasurements = () => {
+    // TODO
+  };
+
+  const handleMeasurementsDisplayedEvent = (measurementsToDisplay) => {
+    // value = {"values":[{"name":"Steps","value":"steps-container"},{"name":"Calories","value":"calories-container"}],"selected":[2,1]}
+    const measurementsList = getMeasurementsSettingsList();
+    state.measurementContainerIds = measurementsToDisplay.selected.map((valuesIndex) => measurementsList[valuesIndex]);
+    state.currentMeasurementIndex = 0;
+
+    if (state.measurementContainerIds.length > 0) {
+      updateMeasurementDependentColours();
+      return;
+    }
+
+    updateForNoDisplayedMeasurements();
   };
 
   messaging.peerSocket.addEventListener('message', (evt) => {
@@ -71,17 +92,13 @@ const initiateMessageListeners = () => {
       }
 
       if (key === SETTINGS_KEYS.measurementsDisplayed) {
-        // value = {"values":[{"name":"Steps","value":"steps-container"},{"name":"Calories","value":"calories-container"}],"selected":[2,1]}
-        const measurementsToDisplay = value;
-        const measurementsList = getMeasurementsSettingsList();
-        state.measurementContainerIds = measurementsToDisplay.selected.map(
-          (valuesIndex) => measurementsList[valuesIndex].value
-        );
+        handleMeasurementsDisplayedEvent(value);
         return;
       }
 
       if (key === SETTINGS_KEYS.dynamicMeasurementTextColour) {
-        handleDynamicMeasurementTextColourEvent(value);
+        state.isDynamicMeasurementTextColour = value.isDynamic;
+        handleDynamicMeasurementTextColourEvent(value.isDynamic, value.measurementTextColour);
         return;
       }
 
@@ -92,7 +109,8 @@ const initiateMessageListeners = () => {
       }
 
       if (key === SETTINGS_KEYS.dynamicSecondsColour) {
-        handleDynamicSecondsColourEvent(value);
+        state.isDynamicSecondsColour = value.isDynamic;
+        handleDynamicSecondsColourEvent(value.isDynamic, value.secondsColour);
         return;
       }
 

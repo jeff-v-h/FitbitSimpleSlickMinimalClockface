@@ -2,7 +2,6 @@ import { me as companion } from 'companion';
 import { settingsStorage } from 'settings';
 import * as messaging from 'messaging';
 import { COLOURS, SETTINGS_KEYS, MEASUREMENT_CONTAINER_IDS } from '../common/constants';
-// import { getMeasurementsSettingsList } from '../common/utils';
 
 const {
   backgroundColour,

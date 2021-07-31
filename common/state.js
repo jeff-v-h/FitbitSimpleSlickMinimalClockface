@@ -1,13 +1,9 @@
-import { MEASUREMENT_CONTAINER_IDS } from './constants';
+import { getMeasurementsSettingsList } from './utils';
 
 const state = {
   isDynamicSecondsColour: true,
   isDynamicMeasurementTextColour: false,
-  measurementContainerIds: [
-    MEASUREMENT_CONTAINER_IDS.heartRate,
-    MEASUREMENT_CONTAINER_IDS.steps,
-    MEASUREMENT_CONTAINER_IDS.calories
-  ],
+  measurementContainerIds: [...getMeasurementsSettingsList()],
   currentMeasurementIndex: 0
 };
 
