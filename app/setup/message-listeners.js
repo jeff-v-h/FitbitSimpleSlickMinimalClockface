@@ -70,6 +70,15 @@ const initiateMessageListeners = () => {
         return;
       }
 
+      if (key === SETTINGS_KEYS.measurementsDisplayed) {
+        // value = {"values":[{"name":"Steps","value":"steps-container"},{"name":"Calories","value":"calories-container"}],"selected":[2,1]}
+        console.log(JSON.stringify(value));
+        state.measurementContainerIds = value.values.map((v) => v.value);
+        console.log(state.measurementContainerIds);
+        // state.measurementContainerIds = [];
+        return;
+      }
+
       if (key === SETTINGS_KEYS.dynamicMeasurementTextColour) {
         handleDynamicMeasurementTextColourEvent(value);
         return;
