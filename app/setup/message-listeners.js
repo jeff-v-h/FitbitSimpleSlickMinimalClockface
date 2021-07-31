@@ -10,6 +10,44 @@ const initiateMessageListeners = () => {
     [COLOURS.orange]: COLOURS.darkOrange
   };
 
+  const handleDynamicMeasurementTextColourEvent = (value) => {
+    const measurementTextElements = getElementsByClassName('unit');
+    const currentMeasurement = state.measurementContainerIds[state.currentMeasurementIndex];
+    state.isDynamicMeasurementTextColour = value.isDynamic;
+
+    if (value.isDynamic) {
+      measurementTextElements.forEach((e) => (e.style.fill = MEASUREMENT_COLOURS[currentMeasurement]));
+      return;
+    }
+
+    measurementTextElements.forEach((e) => (e.style.fill = value.measurementTextColour));
+  };
+
+  const handleDynamicSecondsColourEvent = (value) => {
+    const secondsArc = getElementById('seconds-arc');
+    const secondsBackgroundArc = getElementById('seconds-background-arc');
+    const currentMeasurement = state.measurementContainerIds[state.currentMeasurementIndex];
+    state.isDynamicSecondsColour = value.isDynamic;
+
+    if (value.isDynamic) {
+      secondsArc.style.fill = MEASUREMENT_COLOURS[currentMeasurement];
+      secondsBackgroundArc.style.fill = DARK_MEASUREMENT_COLOURS[currentMeasurement];
+      return;
+    }
+
+    secondsArc.style.fill = value.secondsColour;
+    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value.secondsColour];
+    return;
+  };
+
+  const handleSecondsColourEvent = (value) => {
+    const secondsArc = getElementById('seconds-arc');
+    const secondsBackgroundArc = getElementById('seconds-background-arc');
+    secondsArc.style.fill = value;
+    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value];
+    return;
+  };
+
   messaging.peerSocket.addEventListener('message', (evt) => {
     if (evt && evt.data) {
       const { key, value } = evt.data;
@@ -32,45 +70,24 @@ const initiateMessageListeners = () => {
         return;
       }
 
-      const measurementTextElements = getElementsByClassName('unit');
-      const currentMeasurement = state.measurementContainerIds[state.currentMeasurementIndex];
-
       if (key === SETTINGS_KEYS.dynamicMeasurementTextColour) {
-        state.isDynamicMeasurementTextColour = value.isDynamic;
-
-        if (value.isDynamic) {
-          measurementTextElements.forEach((e) => (e.style.fill = MEASUREMENT_COLOURS[currentMeasurement]));
-          return;
-        }
-
-        measurementTextElements.forEach((e) => (e.style.fill = value.measurementTextColour));
+        handleDynamicMeasurementTextColourEvent(value);
+        return;
       }
 
       if (key === SETTINGS_KEYS.measurementTextColour && !state.dynamicMeasurementTextColour) {
+        const measurementTextElements = getElementsByClassName('unit');
         measurementTextElements.forEach((e) => (e.style.fill = value));
         return;
       }
 
-      const secondsArc = getElementById('seconds-arc');
-      const secondsBackgroundArc = getElementById('seconds-background-arc');
-
       if (key === SETTINGS_KEYS.dynamicSecondsColour) {
-        state.isDynamicSecondsColour = value.isDynamic;
-
-        if (value.isDynamic) {
-          secondsArc.style.fill = MEASUREMENT_COLOURS[currentMeasurement];
-          secondsBackgroundArc.style.fill = DARK_MEASUREMENT_COLOURS[currentMeasurement];
-          return;
-        }
-
-        secondsArc.style.fill = value.secondsColour;
-        secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value.secondsColour];
+        handleDynamicSecondsColourEvent(value);
         return;
       }
 
       if (key === SETTINGS_KEYS.secondsColour && !state.isDynamicSecondsColour) {
-        secondsArc.style.fill = value;
-        secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value];
+        handleSecondsColourEvent(value);
         return;
       }
     }

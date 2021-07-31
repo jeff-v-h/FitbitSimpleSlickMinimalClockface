@@ -10,13 +10,13 @@
       >
         <text id="date" />
         <text id="time" />
-        <svg id="steps-container" class="measurement-container">
-          <image class="icon" href="assets/steps_36px.png" />
-          <text id="steps" class="unit" />
-        </svg>
-        <svg id="heart-rate-container" class="measurement-container invisible">
+        <svg id="heart-rate-container" class="measurement-container">
           <image class="icon" href="assets/heart_rate_36px.png" />
           <text id="heart-rate" class="unit" />
+        </svg>
+        <svg id="steps-container" class="measurement-container invisible">
+          <image class="icon" href="assets/steps_36px.png" />
+          <text id="steps" class="unit" />
         </svg>
         <svg id="calories-container" class="measurement-container invisible" >
           <image class="icon" href="assets/calories_36px.png" />
