@@ -1,5 +1,5 @@
 import * as messaging from 'messaging';
-import { getElementById, getElementsByClassName } from '../../common/utils';
+import { getElementById, getElementsByClassName, getMeasurementsSettingsList } from '../../common/utils';
 import { SETTINGS_KEYS, COLOURS, MEASUREMENT_COLOURS, DARK_MEASUREMENT_COLOURS } from '../../common/constants';
 import state from '../../common/state';
 
@@ -72,9 +72,11 @@ const initiateMessageListeners = () => {
 
       if (key === SETTINGS_KEYS.measurementsDisplayed) {
         // value = {"values":[{"name":"Steps","value":"steps-container"},{"name":"Calories","value":"calories-container"}],"selected":[2,1]}
-        console.log(JSON.stringify(value));
-        state.measurementContainerIds = value.values.map((v) => v.value);
-        console.log(state.measurementContainerIds);
+        const measurementsToDisplay = value;
+        const measurementsList = getMeasurementsSettingsList();
+        state.measurementContainerIds = measurementsToDisplay.selected.map(
+          (valuesIndex) => measurementsList[valuesIndex].value
+        );
         return;
       }
 

@@ -19,7 +19,7 @@ function SettingsPage(props) {
     measurementTextColour,
     measurementsDisplayed
   } = SETTINGS_KEYS;
-  let measurementsDisplayedSettings = JSON.parse(props.settings[measurementsDisplayed]);
+
   return (
     <Page>
       <Section title={getSectionTitle('Background ' + colourTitleWord)}>
@@ -39,7 +39,7 @@ function SettingsPage(props) {
       </Section>
       <Section title={getSectionTitle('Measurement List')}>
         <Select
-          label="Select what can be displayed"
+          label="Include"
           multiple
           settingsKey={measurementsDisplayed}
           options={[
@@ -48,9 +48,6 @@ function SettingsPage(props) {
             { name: 'Calories', value: MEASUREMENT_CONTAINER_IDS.calories }
           ]}
         />
-        {measurementsDisplayedSettings?.values.map((v) => (
-          <Text>{v.name}</Text>
-        ))}
       </Section>
       <Section title={getSectionTitle('Measurement Text')}>
         <Toggle settingsKey={dynamicMeasurementTextColour} label="Match displayed measurement" />
