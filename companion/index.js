@@ -8,10 +8,19 @@ const {
   dateTextColour,
   timeColour,
   measurementTextColour,
-  dynamicSecondsColour,
   secondsColour,
+  dynamicSecondsColour,
   measurementsDisplayed
 } = SETTINGS_KEYS;
+const keys = Object.keys(SETTINGS_KEYS);
+const settingsKeyDefaultValues = {
+  [backgroundColour]: COLOURS.black,
+  [dateTextColour]: COLOURS.white,
+  [timeColour]: COLOURS.white,
+  [measurementTextColour]: COLOURS.white,
+  [dynamicSecondsColour]: true,
+  [secondsColour]: COLOURS.black
+};
 
 const sendSettingData = (data) => {
   const { readyState, OPEN } = messaging.peerSocket;
@@ -28,11 +37,21 @@ const sendValue = (key, val) => {
   }
 };
 
-const sendSettingsKeyValue = (key) => sendValue(key, settingsStorage.getItem(key));
 const sendDynamicSecondsData = (val) => {
   const colour = settingsStorage.getItem(secondsColour);
   const valueToSend = `{ "isDynamic": ${val}, "secondsColour": ${colour ?? `"${COLOURS.red}"`} }`;
   sendValue(dynamicSecondsColour, valueToSend);
+};
+
+const setKeyValue = (key, val) => {
+  switch (key) {
+    case dynamicSecondsColour:
+      sendDynamicSecondsData(val);
+      break;
+    default:
+      sendValue(key, val);
+      break;
+  }
 };
 
 const setDefaultSetting = (key, value) => {
@@ -44,39 +63,13 @@ const setDefaultSetting = (key, value) => {
 
 // Settings have been changed
 settingsStorage.addEventListener('change', (evt) => {
-  switch (evt.key) {
-    case dynamicSecondsColour:
-      sendDynamicSecondsData(evt.newValue);
-      break;
-    default:
-      sendValue(evt.key, evt.newValue);
-      break;
-  }
+  setKeyValue(evt.key, evt.newValue);
 });
 
-// Settings were changed while the companion was not running
+// Send values when settings were changed whilst the companion was not running
 if (companion.launchReasons.settingsChanged) {
-  // Send the value of the setting
-  sendSettingsKeyValue(backgroundColour);
-  sendSettingsKeyValue(dateTextColour);
-  sendSettingsKeyValue(timeColour);
-  sendSettingsKeyValue(measurementTextColour);
-  sendDynamicSecondsData();
+  keys.forEach((key) => setKeyValue(key, settingsStorage.getItem(dynamicSecondsColour)));
 }
 
-const defaults = {
-  [backgroundColour]: COLOURS.black,
-  [dateTextColour]: COLOURS.white,
-  [timeColour]: COLOURS.white,
-  [measurementTextColour]: COLOURS.white,
-  [dynamicSecondsColour]: true,
-  [secondsColour]: COLOURS.black
-};
-
-// init
-setDefaultSetting(backgroundColour, COLOURS.black);
-setDefaultSetting(dateTextColour, COLOURS.white);
-setDefaultSetting(timeColour, COLOURS.white);
-setDefaultSetting(measurementTextColour, COLOURS.white);
-setDefaultSetting(dynamicSecondsColour, true);
-setDefaultSetting(secondsColour, COLOURS.red);
+// init defaults
+keys.forEach((key) => setDefaultSetting(key, settingsKeyDefaultValues[key]));

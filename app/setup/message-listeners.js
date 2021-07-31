@@ -57,7 +57,7 @@ const initiateMessageListeners = () => {
         return;
       }
 
-      if (key === SETTINGS_KEYS.secondsColour) {
+      if (key === SETTINGS_KEYS.secondsColour && !state.isDynamicSecondsColour) {
         secondsArc.style.fill = value;
         secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value];
         return;
