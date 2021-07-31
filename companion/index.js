@@ -1,7 +1,7 @@
 import { me as companion } from 'companion';
 import { settingsStorage } from 'settings';
 import * as messaging from 'messaging';
-import { COLOURS, SETTINGS_KEYS } from '../common/constants';
+import { COLOURS, SETTINGS_KEYS, MEASUREMENT_CONTAINER_IDS } from '../common/constants';
 
 const {
   backgroundColour,
@@ -21,7 +21,24 @@ const settingsKeyDefaultValues = {
   [dynamicMeasurementTextColour]: false,
   [measurementTextColour]: COLOURS.white,
   [dynamicSecondsColour]: true,
-  [secondsColour]: COLOURS.black
+  [secondsColour]: COLOURS.black,
+  [measurementsDisplayed]: {
+    values: [
+      {
+        name: 'Heart Rate',
+        value: MEASUREMENT_CONTAINER_IDS.heartRate
+      },
+      {
+        name: 'Steps',
+        value: MEASUREMENT_CONTAINER_IDS.steps
+      },
+      {
+        name: 'Calories',
+        value: MEASUREMENT_CONTAINER_IDS.calories
+      }
+    ],
+    selected: [0, 1, 2]
+  }
 };
 
 const sendSettingData = (data) => {
@@ -84,4 +101,4 @@ if (companion.launchReasons.settingsChanged) {
 
 // init defaults
 keys.forEach((key) => setDefaultSetting(key, settingsKeyDefaultValues[key]));
-setTimeout(() => keys.forEach((key) => setDefaultSetting(key, settingsKeyDefaultValues[key])), 1000);
+setTimeout(() => keys.forEach((key) => setKeyValue(key, settingsStorage.getItem(key))), 1000);

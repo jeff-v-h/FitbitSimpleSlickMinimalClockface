@@ -1,4 +1,4 @@
-import { SETTINGS_KEYS, COLOURS } from '../common/constants';
+import { SETTINGS_KEYS, COLOURS, MEASUREMENT_CONTAINER_IDS } from '../common/constants';
 
 const getSectionTitle = (title) => (
   <Text bold align="left">
@@ -38,14 +38,15 @@ function SettingsPage(props) {
         />
       </Section>
       <Section title={getSectionTitle('Measurement List')}>
-        <AdditiveList
-          settingsKey={SETTINGS_KEYS}
-          addAction={
-            <Select
-              label="Select what can be displayed"
-              options={[{ name: 'Heart rate' }, { name: 'Steps' }, { name: 'Calories' }]}
-            />
-          }
+        <Select
+          label="Select what can be displayed"
+          multiple
+          settingsKey={measurementsDisplayed}
+          options={[
+            { name: 'Heart Rate', value: MEASUREMENT_CONTAINER_IDS.heartRate },
+            { name: 'Steps', value: MEASUREMENT_CONTAINER_IDS.steps },
+            { name: 'Calories', value: MEASUREMENT_CONTAINER_IDS.calories }
+          ]}
         />
       </Section>
       <Section title={getSectionTitle('Measurement Text')}>

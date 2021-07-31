@@ -38,5 +38,5 @@ export const SETTINGS_KEYS = Object.freeze({
   timeColour: 'time-colour',
   dynamicMeasurementTextColour: 'dynamic-measurement-text-colour',
   measurementTextColour: 'measurement-text-colour',
-  measurementsDisplayed: 'measurementsDisplayed'
+  measurementsDisplayed: 'measurements-displayed'
 });
