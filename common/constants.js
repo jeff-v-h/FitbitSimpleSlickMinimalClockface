@@ -18,12 +18,12 @@ export const MEASUREMENT_CONTAINER_IDS = Object.freeze({
   calories: 'calories-container'
 });
 
-export const ARC_COLOURS = Object.freeze({
+export const MEASUREMENT_COLOURS = Object.freeze({
   [MEASUREMENT_CONTAINER_IDS.heartRate]: COLOURS.red,
   [MEASUREMENT_CONTAINER_IDS.steps]: COLOURS.blue,
   [MEASUREMENT_CONTAINER_IDS.calories]: COLOURS.orange
 });
-export const BACKGROUND_ARC_COLOURS = Object.freeze({
+export const DARK_MEASUREMENT_COLOURS = Object.freeze({
   [MEASUREMENT_CONTAINER_IDS.heartRate]: COLOURS.darkRed,
   [MEASUREMENT_CONTAINER_IDS.steps]: COLOURS.darkBlue,
   [MEASUREMENT_CONTAINER_IDS.calories]: COLOURS.darkOrange

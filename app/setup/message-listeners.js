@@ -1,6 +1,6 @@
 import * as messaging from 'messaging';
 import { getElementById, getElementsByClassName } from '../../common/utils';
-import { SETTINGS_KEYS, COLOURS, ARC_COLOURS, BACKGROUND_ARC_COLOURS } from '../../common/constants';
+import { SETTINGS_KEYS, COLOURS, MEASUREMENT_COLOURS, DARK_MEASUREMENT_COLOURS } from '../../common/constants';
 import state from '../../common/state';
 
 const initiateMessageListeners = () => {
@@ -32,9 +32,22 @@ const initiateMessageListeners = () => {
         return;
       }
 
-      if (key === SETTINGS_KEYS.measurementTextColour) {
-        const measurementElements = getElementsByClassName('unit');
-        measurementElements.forEach((e) => (e.style.fill = value));
+      const measurementTextElements = getElementsByClassName('unit');
+      const currentMeasurement = state.measurementContainerIds[state.currentMeasurementIndex];
+
+      if (key === SETTINGS_KEYS.dynamicMeasurementTextColour) {
+        state.isDynamicMeasurementTextColour = value.isDynamic;
+
+        if (value.isDynamic) {
+          measurementTextElements.forEach((e) => (e.style.fill = MEASUREMENT_COLOURS[currentMeasurement]));
+          return;
+        }
+
+        measurementTextElements.forEach((e) => (e.style.fill = value.measurementTextColour));
+      }
+
+      if (key === SETTINGS_KEYS.measurementTextColour && !state.dynamicMeasurementTextColour) {
+        measurementTextElements.forEach((e) => (e.style.fill = value));
         return;
       }
 
@@ -45,15 +58,13 @@ const initiateMessageListeners = () => {
         state.isDynamicSecondsColour = value.isDynamic;
 
         if (value.isDynamic) {
-          const currentMeasurement = state.measurementContainerIds[state.currentMeasurementIndex];
-          secondsArc.style.fill = ARC_COLOURS[currentMeasurement];
-          secondsBackgroundArc.style.fill = BACKGROUND_ARC_COLOURS[currentMeasurement];
+          secondsArc.style.fill = MEASUREMENT_COLOURS[currentMeasurement];
+          secondsBackgroundArc.style.fill = DARK_MEASUREMENT_COLOURS[currentMeasurement];
           return;
         }
 
         secondsArc.style.fill = value.secondsColour;
         secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value.secondsColour];
-
         return;
       }
 

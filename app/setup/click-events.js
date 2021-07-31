@@ -1,6 +1,6 @@
 import * as document from 'document';
 import state from '../../common/state';
-import { BACKGROUND_ARC_COLOURS, ARC_COLOURS } from '../../common/constants';
+import { DARK_MEASUREMENT_COLOURS, MEASUREMENT_COLOURS } from '../../common/constants';
 
 const initiateClickEvents = () => {
   const rootElement = document.getElementById('root');
@@ -16,8 +16,8 @@ const initiateClickEvents = () => {
   };
 
   const setArcColours = (measurementContainerId) => {
-    secondsBackgroundArc.style.fill = BACKGROUND_ARC_COLOURS[measurementContainerId];
-    secondsArc.style.fill = ARC_COLOURS[measurementContainerId];
+    secondsBackgroundArc.style.fill = DARK_MEASUREMENT_COLOURS[measurementContainerId];
+    secondsArc.style.fill = MEASUREMENT_COLOURS[measurementContainerId];
   };
 
   const displayNextActvity = () => {
