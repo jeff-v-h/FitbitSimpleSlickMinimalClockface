@@ -36,6 +36,7 @@ export const SETTINGS_KEYS = Object.freeze({
   dynamicSecondsColour: 'dynamic-seconds-colour',
   dateTextColour: 'date-text-colour',
   timeColour: 'time-colour',
+  dynamicMeasurementTextColour: 'dynamic-measurement-text-colour',
   measurementTextColour: 'measurement-text-colour',
   measurementsDisplayed: 'measurementsDisplayed'
 });

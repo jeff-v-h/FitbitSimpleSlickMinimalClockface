@@ -7,6 +7,7 @@ const {
   backgroundColour,
   dateTextColour,
   timeColour,
+  dynamicMeasurementTextColour,
   measurementTextColour,
   secondsColour,
   dynamicSecondsColour,
@@ -17,6 +18,7 @@ const settingsKeyDefaultValues = {
   [backgroundColour]: COLOURS.black,
   [dateTextColour]: COLOURS.white,
   [timeColour]: COLOURS.white,
+  [dynamicMeasurementTextColour]: false,
   [measurementTextColour]: COLOURS.white,
   [dynamicSecondsColour]: true,
   [secondsColour]: COLOURS.black
@@ -39,12 +41,21 @@ const sendValue = (key, val) => {
 
 const sendDynamicSecondsData = (val) => {
   const colour = settingsStorage.getItem(secondsColour);
-  const valueToSend = `{ "isDynamic": ${val}, "secondsColour": ${colour ?? `"${COLOURS.red}"`} }`;
+  const valueToSend = `{ "isDynamic": ${val}, "secondsColour": ${colour} }`;
   sendValue(dynamicSecondsColour, valueToSend);
+};
+
+const sendDynamicMeasurementTextData = (val) => {
+  const colour = settingsStorage.getItem(measurementTextColour);
+  const valueToSend = `{ "isDynamic": ${val}, "measurementTextColour": ${colour} }`;
+  sendValue(dynamicMeasurementTextColour, valueToSend);
 };
 
 const setKeyValue = (key, val) => {
   switch (key) {
+    case dynamicMeasurementTextColour:
+      sendDynamicMeasurementTextData(val);
+      break;
     case dynamicSecondsColour:
       sendDynamicSecondsData(val);
       break;
@@ -68,8 +79,9 @@ settingsStorage.addEventListener('change', (evt) => {
 
 // Send values when settings were changed whilst the companion was not running
 if (companion.launchReasons.settingsChanged) {
-  keys.forEach((key) => setKeyValue(key, settingsStorage.getItem(dynamicSecondsColour)));
+  keys.forEach((key) => setKeyValue(key, settingsStorage.getItem(key)));
 }
 
 // init defaults
 keys.forEach((key) => setDefaultSetting(key, settingsKeyDefaultValues[key]));
+setTimeout(() => keys.forEach((key) => setDefaultSetting(key, settingsKeyDefaultValues[key])), 1000);

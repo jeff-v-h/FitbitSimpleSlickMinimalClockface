@@ -15,6 +15,7 @@ function SettingsPage(props) {
     secondsColour,
     dateTextColour,
     timeColour,
+    dynamicMeasurementTextColour,
     measurementTextColour,
     measurementsDisplayed
   } = SETTINGS_KEYS;
@@ -36,18 +37,6 @@ function SettingsPage(props) {
           colors={[{ color: white }, { color: black }, { color: blue }, { color: red }, { color: orange }]}
         />
       </Section>
-      <Section title={getSectionTitle('Measurement Text ' + colourTitleWord)}>
-        <ColorSelect
-          settingsKey={measurementTextColour}
-          colors={[{ color: white }, { color: black }, { color: blue }, { color: red }, { color: orange }]}
-        />
-      </Section>
-      <Section title={getSectionTitle('Seconds Circle ' + colourTitleWord)}>
-        <Toggle settingsKey={dynamicSecondsColour} label="Match displayed measurement" />
-        {props.settings[dynamicSecondsColour] === 'false' && (
-          <ColorSelect settingsKey={secondsColour} colors={[{ color: blue }, { color: red }, { color: orange }]} />
-        )}
-      </Section>
       <Section title={getSectionTitle('Measurement List')}>
         <AdditiveList
           settingsKey={SETTINGS_KEYS}
@@ -58,6 +47,21 @@ function SettingsPage(props) {
             />
           }
         />
+      </Section>
+      <Section title={getSectionTitle('Measurement Text')}>
+        <Toggle settingsKey={dynamicMeasurementTextColour} label="Match displayed measurement" />
+        {props.settings[dynamicMeasurementTextColour] === 'false' && (
+          <ColorSelect
+            settingsKey={measurementTextColour}
+            colors={[{ color: white }, { color: black }, { color: blue }, { color: red }, { color: orange }]}
+          />
+        )}
+      </Section>
+      <Section title={getSectionTitle('Seconds Circle ' + colourTitleWord)}>
+        <Toggle settingsKey={dynamicSecondsColour} label="Match displayed measurement" />
+        {props.settings[dynamicSecondsColour] === 'false' && (
+          <ColorSelect settingsKey={secondsColour} colors={[{ color: blue }, { color: red }, { color: orange }]} />
+        )}
       </Section>
     </Page>
   );
