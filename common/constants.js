@@ -28,15 +28,23 @@ export const MEASUREMENT_COLOURS = Object.freeze({
   [MEASUREMENT_CONTAINER_IDS.steps]: COLOURS.blue,
   [MEASUREMENT_CONTAINER_IDS.calories]: COLOURS.orange
 });
-export const DARK_MEASUREMENT_COLOURS = Object.freeze({
-  [MEASUREMENT_CONTAINER_IDS.heartRate]: COLOURS.darkRed,
-  [MEASUREMENT_CONTAINER_IDS.steps]: COLOURS.darkBlue,
-  [MEASUREMENT_CONTAINER_IDS.calories]: COLOURS.darkOrange
-});
-export const LIGHT_MEASUREMENT_COLOURS = Object.freeze({
-  [MEASUREMENT_CONTAINER_IDS.heartRate]: COLOURS.lightRed,
-  [MEASUREMENT_CONTAINER_IDS.steps]: COLOURS.lightBlue,
-  [MEASUREMENT_CONTAINER_IDS.calories]: COLOURS.lightOrange
+export const ARC_MAIN_TO_BACKGROUND_COLOUR_MAP = Object.freeze({
+  // background
+  [COLOURS.white]: {
+    // colour: mappedColourForTheme
+    [COLOURS.red]: COLOURS.lightRed,
+    [COLOURS.blue]: COLOURS.lightBlue,
+    [COLOURS.orange]: COLOURS.lightOrange,
+    [COLOURS.black]: COLOURS.lightGrey,
+    [COLOURS.white]: COLOURS.darkGrey
+  },
+  [COLOURS.black]: {
+    [COLOURS.red]: COLOURS.darkRed,
+    [COLOURS.blue]: COLOURS.darkBlue,
+    [COLOURS.orange]: COLOURS.darkOrange,
+    [COLOURS.black]: COLOURS.lightGrey,
+    [COLOURS.white]: COLOURS.darkGrey
+  }
 });
 
 // Settings keys

@@ -6,29 +6,10 @@ import {
   getCurrentMeasurement,
   getCurrentSecondsColour
 } from '../../common/utils';
-import { SETTINGS_KEYS, COLOURS, MEASUREMENT_COLOURS } from '../../common/constants';
+import { SETTINGS_KEYS, COLOURS, MEASUREMENT_COLOURS, ARC_MAIN_TO_BACKGROUND_COLOUR_MAP } from '../../common/constants';
 import state from '../../common/state';
 
 const initiateMessageListeners = () => {
-  const arcMainToBackgroundColourMap = {
-    // background
-    [COLOURS.white]: {
-      // colour: mappedColourForTheme
-      [COLOURS.red]: COLOURS.lightRed,
-      [COLOURS.blue]: COLOURS.lightBlue,
-      [COLOURS.orange]: COLOURS.lightOrange,
-      [COLOURS.black]: COLOURS.lightGrey,
-      [COLOURS.white]: COLOURS.darkGrey
-    },
-    [COLOURS.black]: {
-      [COLOURS.red]: COLOURS.darkRed,
-      [COLOURS.blue]: COLOURS.darkBlue,
-      [COLOURS.orange]: COLOURS.darkOrange,
-      [COLOURS.black]: COLOURS.lightGrey,
-      [COLOURS.white]: COLOURS.darkGrey
-    }
-  };
-
   const getMeasurementColour = (measurementColours) => {
     const currentMeasurement = getCurrentMeasurement(state);
 
@@ -56,7 +37,7 @@ const initiateMessageListeners = () => {
     const secondsArc = getElementById('seconds-arc');
     const secondsBackgroundArc = getElementById('seconds-background-arc');
     secondsArc.style.fill = colour;
-    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[state.backgroundColour][colour];
+    secondsBackgroundArc.style.fill = ARC_MAIN_TO_BACKGROUND_COLOUR_MAP[state.backgroundColour][colour];
     return;
   };
 

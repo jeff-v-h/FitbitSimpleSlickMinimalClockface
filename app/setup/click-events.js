@@ -1,5 +1,5 @@
 import state from '../../common/state';
-import { DARK_MEASUREMENT_COLOURS, MEASUREMENT_COLOURS } from '../../common/constants';
+import { ARC_MAIN_TO_BACKGROUND_COLOUR_MAP, MEASUREMENT_COLOURS } from '../../common/constants';
 import { getElementById, getElementsByClassName } from '../../common/utils';
 
 const initiateClickEvents = () => {
@@ -17,28 +17,27 @@ const initiateClickEvents = () => {
   };
 
   const setMeasurementTextColours = (measurementContainerId) =>
+    state.isDynamicMeasurementTextColour &&
     measurementTextElements.forEach((e) => (e.style.fill = MEASUREMENT_COLOURS[measurementContainerId]));
 
   const setArcColours = (measurementContainerId) => {
-    secondsBackgroundArc.style.fill = DARK_MEASUREMENT_COLOURS[measurementContainerId];
-    secondsArc.style.fill = MEASUREMENT_COLOURS[measurementContainerId];
+    if (state.isDynamicSecondsColour) {
+      const mainArcColour = MEASUREMENT_COLOURS[measurementContainerId];
+      secondsArc.style.fill = mainArcColour;
+    }
+    secondsBackgroundArc.style.fill =
+      ARC_MAIN_TO_BACKGROUND_COLOUR_MAP[state.backgroundColour][secondsArc.style.fill.toLowerCase()];
   };
 
   const displayNextActvity = () => {
-    const { measurementContainerIds, currentMeasurementIndex, isDynamicSecondsColour, isDynamicMeasurementTextColour } =
-      state;
+    const { measurementContainerIds, currentMeasurementIndex } = state;
     const currentId = measurementContainerIds[currentMeasurementIndex];
     const nextIndex = (currentMeasurementIndex + 1) % measurementContainerIds.length;
     const nextId = measurementContainerIds[nextIndex];
 
     setMeasurementsVisibility(currentId, nextId);
-    if (isDynamicMeasurementTextColour) {
-      setMeasurementTextColours(nextId);
-    }
-
-    if (isDynamicSecondsColour) {
-      setArcColours(nextId);
-    }
+    setMeasurementTextColours(nextId);
+    setArcColours(nextId);
 
     state.currentMeasurementIndex = nextIndex;
   };
