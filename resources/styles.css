@@ -15,17 +15,17 @@ If other watches are upgraded to be compatible with OS 5, the hard values will n
 }
 
 #date {
-  font-size: 24;
+  font-size: 26;
   text-length: 32;
   text-anchor: middle;
   x: 50%;
-  y: 25%;
+  y: 26%;
   fill: #ffffff;
 }
 
 #time {
   font-size: 82;
-  text-length: 32;
+  text-length: 34;
   text-anchor: middle;
   x: 50%;
   y: 57%;
@@ -38,20 +38,20 @@ If other watches are upgraded to be compatible with OS 5, the hard values will n
 }
 
 .measurement-container {
-  x: 36%;
-  y: 75%;
-  width: 42%;
-  height: 24;
+  x: 35%;
+  y: 70%;
+  width: 44%;
+  height: 26;
 }
 
 .icon {
-  width: 24;
-  height: 24;
+  width: 26;
+  height: 26;
   opacity: 1;
 }
 
 .measurement-container .icon {
-  x: 2%;
+  x: 3%;
   y: 10%;
 }
 
@@ -69,7 +69,7 @@ If other watches are upgraded to be compatible with OS 5, the hard values will n
 
 .unit {
   font-family: System-Regular;
-  font-size: 24;
+  font-size: 26;
   x: 50%;
   text-length: 32;
   text-anchor: middle;
