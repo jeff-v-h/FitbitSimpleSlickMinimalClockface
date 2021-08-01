@@ -1,5 +1,5 @@
 import * as document from 'document';
-import { MEASUREMENT_CONTAINER_IDS } from './constants';
+import { MEASUREMENT_CONTAINER_IDS, COLOURS } from './constants';
 
 // Add zero in front of numbers < 10
 export const zeroPad = (i) => {
@@ -22,3 +22,6 @@ export const getCurrentMeasurement = (state) => {
   const { measurementContainerIds, currentMeasurementIndex } = state;
   return measurementContainerIds[currentMeasurementIndex];
 };
+
+export const isBackgroundWhite = () =>
+  getElementById('background').style.fill.toLowerCase() === COLOURS.white.toLowerCase();

@@ -3,26 +3,35 @@ import {
   getElementById,
   getElementsByClassName,
   getMeasurementsSettingsList,
-  getCurrentMeasurement
+  getCurrentMeasurement,
+  isBackgroundWhite
 } from '../../common/utils';
 import { SETTINGS_KEYS, COLOURS, MEASUREMENT_COLOURS } from '../../common/constants';
 import state from '../../common/state';
 
 const initiateMessageListeners = () => {
   const arcMainToBackgroundColourMap = {
-    [COLOURS.red]: COLOURS.darkRed,
-    [COLOURS.blue]: COLOURS.darkBlue,
-    [COLOURS.orange]: COLOURS.darkOrange,
-    [COLOURS.black]: COLOURS.lightGrey,
-    [COLOURS.white]: COLOURS.darkGrey
+    light: {
+      [COLOURS.red]: COLOURS.lightRed,
+      [COLOURS.blue]: COLOURS.lightBlue,
+      [COLOURS.orange]: COLOURS.lightOrange,
+      [COLOURS.black]: COLOURS.lightGrey,
+      [COLOURS.white]: COLOURS.darkGrey
+    },
+    dark: {
+      [COLOURS.red]: COLOURS.darkRed,
+      [COLOURS.blue]: COLOURS.darkBlue,
+      [COLOURS.orange]: COLOURS.darkOrange,
+      [COLOURS.black]: COLOURS.lightGrey,
+      [COLOURS.white]: COLOURS.darkGrey
+    }
   };
 
   const getMeasurementColour = (measurementColours) => {
     const currentMeasurement = getCurrentMeasurement(state);
 
     if (!currentMeasurement) {
-      const backgroundColour = getElementById('background').style.fill;
-      return backgroundColour === COLOURS.black ? COLOURS.white : COLOURS.black;
+      return isBackgroundWhite() ? COLOURS.black : COLOURS.white;
     }
 
     return measurementColours[currentMeasurement];
@@ -41,7 +50,8 @@ const initiateMessageListeners = () => {
     const mainSecondsColour = isDynamic ? getMeasurementColour(MEASUREMENT_COLOURS) : secondsColour;
 
     secondsArc.style.fill = mainSecondsColour;
-    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[mainSecondsColour];
+    const theme = isBackgroundWhite() ? 'light' : 'dark';
+    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[theme][mainSecondsColour];
     return;
   };
 
@@ -49,7 +59,8 @@ const initiateMessageListeners = () => {
     const secondsArc = getElementById('seconds-arc');
     const secondsBackgroundArc = getElementById('seconds-background-arc');
     secondsArc.style.fill = value;
-    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value];
+    const theme = isBackgroundWhite() ? 'light' : 'dark';
+    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[theme][value];
     return;
   };
 
@@ -73,18 +84,12 @@ const initiateMessageListeners = () => {
     }
   };
 
-  const updateForNoDisplayedMeasurements = () => {
-    // TODO
-  };
-
   const handleMeasurementsDisplayedEvent = (measurementsToDisplay) => {
     // value = {"values":[{"name":"Steps","value":"steps-container"},{"name":"Calories","value":"calories-container"}],"selected":[2,1]}
     const measurementsList = getMeasurementsSettingsList();
     state.measurementContainerIds = measurementsToDisplay.selected.map((valuesIndex) => measurementsList[valuesIndex]);
     resetDisplayedMeasurement();
     updateMeasurementDependentColours();
-
-    updateForNoDisplayedMeasurements();
   };
 
   messaging.peerSocket.addEventListener('message', (evt) => {

@@ -10,8 +10,11 @@ export const COLOURS = Object.freeze({
   darkRed: '#3f0000',
   darkBlue: '#003366',
   darkOrange: '#512f11',
-  lightGrey: '#e0e0e0',
-  darkGrey: '#5c5c5c'
+  darkGrey: '#5c5c5c',
+  lightRed: '#ffcccc',
+  lightBlue: '#d4ebf2',
+  lightOrange: '#ffedcc',
+  lightGrey: '#e0e0e0'
 });
 
 export const MEASUREMENT_CONTAINER_IDS = Object.freeze({
@@ -29,6 +32,11 @@ export const DARK_MEASUREMENT_COLOURS = Object.freeze({
   [MEASUREMENT_CONTAINER_IDS.heartRate]: COLOURS.darkRed,
   [MEASUREMENT_CONTAINER_IDS.steps]: COLOURS.darkBlue,
   [MEASUREMENT_CONTAINER_IDS.calories]: COLOURS.darkOrange
+});
+export const LIGHT_MEASUREMENT_COLOURS = Object.freeze({
+  [MEASUREMENT_CONTAINER_IDS.heartRate]: COLOURS.lightRed,
+  [MEASUREMENT_CONTAINER_IDS.steps]: COLOURS.lightBlue,
+  [MEASUREMENT_CONTAINER_IDS.calories]: COLOURS.lightOrange
 });
 
 // Settings keys
