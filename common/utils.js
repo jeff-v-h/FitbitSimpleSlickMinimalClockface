@@ -17,3 +17,8 @@ export const getMeasurementsSettingsList = () => [
   MEASUREMENT_CONTAINER_IDS.steps,
   MEASUREMENT_CONTAINER_IDS.calories
 ];
+
+export const getCurrentMeasurement = (state) => {
+  const { measurementContainerIds, currentMeasurementIndex } = state;
+  return measurementContainerIds[currentMeasurementIndex];
+};

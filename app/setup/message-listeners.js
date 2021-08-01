@@ -1,5 +1,10 @@
 import * as messaging from 'messaging';
-import { getElementById, getElementsByClassName, getMeasurementsSettingsList } from '../../common/utils';
+import {
+  getElementById,
+  getElementsByClassName,
+  getMeasurementsSettingsList,
+  getCurrentMeasurement
+} from '../../common/utils';
 import { SETTINGS_KEYS, COLOURS, MEASUREMENT_COLOURS, DARK_MEASUREMENT_COLOURS } from '../../common/constants';
 import state from '../../common/state';
 
@@ -12,8 +17,7 @@ const initiateMessageListeners = () => {
 
   const handleDynamicMeasurementTextColourEvent = (isDynamic, measurementTextColour) => {
     const measurementTextElements = getElementsByClassName('unit');
-    const { measurementContainerIds, currentMeasurementIndex } = state;
-    const currentMeasurement = measurementContainerIds[currentMeasurementIndex];
+    const currentMeasurement = getCurrentMeasurement(state);
 
     measurementTextElements.forEach(
       (e) => (e.style.fill = isDynamic ? MEASUREMENT_COLOURS[currentMeasurement] : measurementTextColour)
@@ -23,8 +27,7 @@ const initiateMessageListeners = () => {
   const handleDynamicSecondsColourEvent = (isDynamic, secondsColour) => {
     const secondsArc = getElementById('seconds-arc');
     const secondsBackgroundArc = getElementById('seconds-background-arc');
-    const { measurementContainerIds, currentMeasurementIndex } = state;
-    const currentMeasurement = measurementContainerIds[currentMeasurementIndex];
+    const currentMeasurement = getCurrentMeasurement(state);
 
     secondsArc.style.fill = isDynamic ? MEASUREMENT_COLOURS[currentMeasurement] : secondsColour;
     secondsBackgroundArc.style.fill = isDynamic
@@ -39,6 +42,16 @@ const initiateMessageListeners = () => {
     secondsArc.style.fill = value;
     secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[value];
     return;
+  };
+
+  const resetDisplayedMeasurement = () => {
+    state.currentMeasurementIndex = 0;
+    const measurementContainers = getElementsByClassName('measurement-container');
+    const currentMeasurement = getCurrentMeasurement(state);
+
+    measurementContainers.forEach((m) => {
+      m.style.visibility = m.id === currentMeasurement ? 'visible' : 'hidden';
+    });
   };
 
   const updateMeasurementDependentColours = () => {
@@ -59,7 +72,7 @@ const initiateMessageListeners = () => {
     // value = {"values":[{"name":"Steps","value":"steps-container"},{"name":"Calories","value":"calories-container"}],"selected":[2,1]}
     const measurementsList = getMeasurementsSettingsList();
     state.measurementContainerIds = measurementsToDisplay.selected.map((valuesIndex) => measurementsList[valuesIndex]);
-    state.currentMeasurementIndex = 0;
+    resetDisplayedMeasurement();
 
     if (state.measurementContainerIds.length > 0) {
       updateMeasurementDependentColours();
