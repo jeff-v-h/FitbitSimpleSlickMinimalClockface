@@ -4,7 +4,6 @@ import {
   getElementsByClassName,
   getMeasurementsSettingsList,
   getCurrentMeasurement,
-  isBackgroundWhite,
   getCurrentSecondsColour
 } from '../../common/utils';
 import { SETTINGS_KEYS, COLOURS, MEASUREMENT_COLOURS } from '../../common/constants';
@@ -12,8 +11,8 @@ import state from '../../common/state';
 
 const initiateMessageListeners = () => {
   const arcMainToBackgroundColourMap = {
-    // theme
-    light: {
+    // background
+    [COLOURS.white]: {
       // colour: mappedColourForTheme
       [COLOURS.red]: COLOURS.lightRed,
       [COLOURS.blue]: COLOURS.lightBlue,
@@ -21,7 +20,7 @@ const initiateMessageListeners = () => {
       [COLOURS.black]: COLOURS.lightGrey,
       [COLOURS.white]: COLOURS.darkGrey
     },
-    dark: {
+    [COLOURS.black]: {
       [COLOURS.red]: COLOURS.darkRed,
       [COLOURS.blue]: COLOURS.darkBlue,
       [COLOURS.orange]: COLOURS.darkOrange,
@@ -34,7 +33,7 @@ const initiateMessageListeners = () => {
     const currentMeasurement = getCurrentMeasurement(state);
 
     if (!currentMeasurement) {
-      return isBackgroundWhite() ? COLOURS.black : COLOURS.white;
+      return state.backgroundColour === COLOURS.white ? COLOURS.black : COLOURS.white;
     }
 
     return measurementColours[currentMeasurement];
@@ -57,8 +56,7 @@ const initiateMessageListeners = () => {
     const secondsArc = getElementById('seconds-arc');
     const secondsBackgroundArc = getElementById('seconds-background-arc');
     secondsArc.style.fill = colour;
-    const theme = isBackgroundWhite() ? 'light' : 'dark';
-    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[theme][colour];
+    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[state.backgroundColour][colour];
     return;
   };
 
@@ -95,6 +93,7 @@ const initiateMessageListeners = () => {
       const { key, value } = evt.data;
 
       if (key === SETTINGS_KEYS.backgroundColour) {
+        state.backgroundColour = value;
         const backgroundElement = getElementById('background');
         backgroundElement.style.fill = value;
         handleDynamicSecondsColourEvent(state.isDynamicSecondsColour, getCurrentSecondsColour());
