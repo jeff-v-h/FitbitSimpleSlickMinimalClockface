@@ -9,7 +9,9 @@ export const COLOURS = Object.freeze({
   orange: '#ffa500',
   darkRed: '#3f0000',
   darkBlue: '#003366',
-  darkOrange: '#512f11'
+  darkOrange: '#512f11',
+  lightGrey: '#e0e0e0',
+  darkGrey: '#5c5c5c'
 });
 
 export const MEASUREMENT_CONTAINER_IDS = Object.freeze({

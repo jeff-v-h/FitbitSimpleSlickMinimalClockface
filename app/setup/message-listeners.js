@@ -5,34 +5,43 @@ import {
   getMeasurementsSettingsList,
   getCurrentMeasurement
 } from '../../common/utils';
-import { SETTINGS_KEYS, COLOURS, MEASUREMENT_COLOURS, DARK_MEASUREMENT_COLOURS } from '../../common/constants';
+import { SETTINGS_KEYS, COLOURS, MEASUREMENT_COLOURS } from '../../common/constants';
 import state from '../../common/state';
 
 const initiateMessageListeners = () => {
   const arcMainToBackgroundColourMap = {
     [COLOURS.red]: COLOURS.darkRed,
     [COLOURS.blue]: COLOURS.darkBlue,
-    [COLOURS.orange]: COLOURS.darkOrange
+    [COLOURS.orange]: COLOURS.darkOrange,
+    [COLOURS.black]: COLOURS.lightGrey,
+    [COLOURS.white]: COLOURS.darkGrey
+  };
+
+  const getMeasurementColour = (measurementColours) => {
+    const currentMeasurement = getCurrentMeasurement(state);
+
+    if (!currentMeasurement) {
+      const backgroundColour = getElementById('background').style.fill;
+      return backgroundColour === COLOURS.black ? COLOURS.white : COLOURS.black;
+    }
+
+    return measurementColours[currentMeasurement];
   };
 
   const handleDynamicMeasurementTextColourEvent = (isDynamic, measurementTextColour) => {
     const measurementTextElements = getElementsByClassName('unit');
-    const currentMeasurement = getCurrentMeasurement(state);
+    const colour = isDynamic ? getMeasurementColour(MEASUREMENT_COLOURS) : measurementTextColour;
 
-    measurementTextElements.forEach(
-      (e) => (e.style.fill = isDynamic ? MEASUREMENT_COLOURS[currentMeasurement] : measurementTextColour)
-    );
+    measurementTextElements.forEach((e) => (e.style.fill = colour));
   };
 
   const handleDynamicSecondsColourEvent = (isDynamic, secondsColour) => {
     const secondsArc = getElementById('seconds-arc');
     const secondsBackgroundArc = getElementById('seconds-background-arc');
-    const currentMeasurement = getCurrentMeasurement(state);
+    const mainSecondsColour = isDynamic ? getMeasurementColour(MEASUREMENT_COLOURS) : secondsColour;
 
-    secondsArc.style.fill = isDynamic ? MEASUREMENT_COLOURS[currentMeasurement] : secondsColour;
-    secondsBackgroundArc.style.fill = isDynamic
-      ? DARK_MEASUREMENT_COLOURS[currentMeasurement]
-      : arcMainToBackgroundColourMap[secondsColour];
+    secondsArc.style.fill = mainSecondsColour;
+    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[mainSecondsColour];
     return;
   };
 
@@ -73,11 +82,7 @@ const initiateMessageListeners = () => {
     const measurementsList = getMeasurementsSettingsList();
     state.measurementContainerIds = measurementsToDisplay.selected.map((valuesIndex) => measurementsList[valuesIndex]);
     resetDisplayedMeasurement();
-
-    if (state.measurementContainerIds.length > 0) {
-      updateMeasurementDependentColours();
-      return;
-    }
+    updateMeasurementDependentColours();
 
     updateForNoDisplayedMeasurements();
   };
