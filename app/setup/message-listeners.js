@@ -94,6 +94,9 @@ const initiateMessageListeners = () => {
       if (key === SETTINGS_KEYS.backgroundColour) {
         const backgroundElement = getElementById('background');
         backgroundElement.style.fill = value;
+        if (state.isDynamicSecondsColour && state.measurementContainerIds.length === 0) {
+          handleDynamicSecondsColourEvent(true);
+        }
         return;
       }
 
