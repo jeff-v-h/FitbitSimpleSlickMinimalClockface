@@ -2,11 +2,11 @@
   <rect id="background">
     <arc
       id="seconds-background-arc" x="5%" y="5%" width="90%" height="90%"
-      fill="#3f0000" arc-width="4" start-angle="0" sweep-angle="360"
+      fill="#3f0000" arc-width="5" start-angle="0" sweep-angle="360"
     >
       <arc
         id="seconds-arc" x="5%" y="5%" width="90%" height="90%"
-        fill="#ff0000" arc-width="4" start-angle="0" sweep-angle="6"
+        fill="#ff0000" arc-width="5" start-angle="0" sweep-angle="6"
       >
         <text id="date" />
         <text id="time" />
