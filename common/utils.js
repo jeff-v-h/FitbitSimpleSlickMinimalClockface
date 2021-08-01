@@ -25,3 +25,5 @@ export const getCurrentMeasurement = (state) => {
 
 export const isBackgroundWhite = () =>
   getElementById('background').style.fill.toLowerCase() === COLOURS.white.toLowerCase();
+
+export const getCurrentSecondsColour = () => getElementById('seconds-arc').style.fill;

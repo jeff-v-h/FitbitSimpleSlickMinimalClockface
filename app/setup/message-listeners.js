@@ -4,14 +4,17 @@ import {
   getElementsByClassName,
   getMeasurementsSettingsList,
   getCurrentMeasurement,
-  isBackgroundWhite
+  isBackgroundWhite,
+  getCurrentSecondsColour
 } from '../../common/utils';
 import { SETTINGS_KEYS, COLOURS, MEASUREMENT_COLOURS } from '../../common/constants';
 import state from '../../common/state';
 
 const initiateMessageListeners = () => {
   const arcMainToBackgroundColourMap = {
+    // theme
     light: {
+      // colour: mappedColourForTheme
       [COLOURS.red]: COLOURS.lightRed,
       [COLOURS.blue]: COLOURS.lightBlue,
       [COLOURS.orange]: COLOURS.lightOrange,
@@ -45,22 +48,17 @@ const initiateMessageListeners = () => {
   };
 
   const handleDynamicSecondsColourEvent = (isDynamic, secondsColour) => {
-    const secondsArc = getElementById('seconds-arc');
-    const secondsBackgroundArc = getElementById('seconds-background-arc');
     const mainSecondsColour = isDynamic ? getMeasurementColour(MEASUREMENT_COLOURS) : secondsColour;
-
-    secondsArc.style.fill = mainSecondsColour;
-    const theme = isBackgroundWhite() ? 'light' : 'dark';
-    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[theme][mainSecondsColour];
+    updateSecondsColours(mainSecondsColour);
     return;
   };
 
-  const handleSecondsColourEvent = (value) => {
+  const updateSecondsColours = (colour) => {
     const secondsArc = getElementById('seconds-arc');
     const secondsBackgroundArc = getElementById('seconds-background-arc');
-    secondsArc.style.fill = value;
+    secondsArc.style.fill = colour;
     const theme = isBackgroundWhite() ? 'light' : 'dark';
-    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[theme][value];
+    secondsBackgroundArc.style.fill = arcMainToBackgroundColourMap[theme][colour];
     return;
   };
 
@@ -99,9 +97,7 @@ const initiateMessageListeners = () => {
       if (key === SETTINGS_KEYS.backgroundColour) {
         const backgroundElement = getElementById('background');
         backgroundElement.style.fill = value;
-        if (state.isDynamicSecondsColour && state.measurementContainerIds.length === 0) {
-          handleDynamicSecondsColourEvent(true);
-        }
+        handleDynamicSecondsColourEvent(state.isDynamicSecondsColour, getCurrentSecondsColour());
         return;
       }
 
@@ -141,7 +137,7 @@ const initiateMessageListeners = () => {
       }
 
       if (key === SETTINGS_KEYS.secondsColour && !state.isDynamicSecondsColour) {
-        handleSecondsColourEvent(value);
+        updateSecondsColours(value);
         return;
       }
     }
