@@ -1,6 +1,6 @@
 import state from '../../common/state';
-import { ARC_MAIN_TO_BACKGROUND_COLOUR_MAP, MEASUREMENT_COLOURS } from '../../common/constants';
-import { getElementById, getElementsByClassName } from '../../common/utils';
+import { MEASUREMENT_COLOURS } from '../../common/constants';
+import { getElementById, getElementsByClassName, getBackgroundArcColour } from '../../common/utils';
 
 const initiateClickEvents = () => {
   const rootElement = getElementById('root');
@@ -25,8 +25,7 @@ const initiateClickEvents = () => {
       const mainArcColour = MEASUREMENT_COLOURS[measurementContainerId];
       secondsArc.style.fill = mainArcColour;
     }
-    secondsBackgroundArc.style.fill =
-      ARC_MAIN_TO_BACKGROUND_COLOUR_MAP[state.backgroundColour][secondsArc.style.fill.toLowerCase()];
+    secondsBackgroundArc.style.fill = getBackgroundArcColour(state.backgroundColour, secondsArc.style.fill);
   };
 
   const displayNextActvity = () => {
