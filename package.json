@@ -6,7 +6,7 @@
   "fitbit": {
     "appUUID": "415d17a5-bf80-48d8-93b0-895f0f7d7c88",
     "appType": "clockface",
-    "appDisplayName": "Simple Design",
+    "appDisplayName": "Simple Slick Minimal",
     "iconFile": "resources/icon.png",
     "wipeColor": "",
     "requestedPermissions": [
@@ -19,7 +19,7 @@
     ],
     "i18n": {
       "en-US": {
-        "name": "Simple Design"
+        "name": "Simple Slick Minimal"
       }
     },
     "defaultLanguage": "en-US"

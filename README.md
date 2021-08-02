@@ -1,4 +1,4 @@
-# Fitbit Simple Design Clockface
+# Fitbit Simple Slick Minimal Clockface
 
 My own clockface for the Fitbit Versa 3 smart watch.
 
