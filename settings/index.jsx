@@ -7,7 +7,6 @@ const getSectionTitle = (title) => (
 );
 
 function SettingsPage(props) {
-  const colourTitleWord = 'Colour';
   const { black, white, red, blue, orange } = COLOURS;
   const {
     backgroundColour,
@@ -22,16 +21,16 @@ function SettingsPage(props) {
 
   return (
     <Page>
-      <Section title={getSectionTitle('Background ' + colourTitleWord)}>
+      <Section title={getSectionTitle('Background')}>
         <ColorSelect settingsKey={backgroundColour} colors={[{ color: black }, { color: white }]} />
       </Section>
-      <Section title={getSectionTitle('Date ' + colourTitleWord)}>
+      <Section title={getSectionTitle('Date')}>
         <ColorSelect
           settingsKey={dateTextColour}
           colors={[{ color: white }, { color: black }, { color: blue }, { color: red }, { color: orange }]}
         />
       </Section>
-      <Section title={getSectionTitle('Time ' + colourTitleWord)}>
+      <Section title={getSectionTitle('Time')}>
         <ColorSelect
           settingsKey={timeColour}
           colors={[{ color: white }, { color: black }, { color: blue }, { color: red }, { color: orange }]}
@@ -58,7 +57,7 @@ function SettingsPage(props) {
           />
         )}
       </Section>
-      <Section title={getSectionTitle('Seconds Circle ' + colourTitleWord)}>
+      <Section title={getSectionTitle('Seconds Circle')}>
         <Toggle settingsKey={dynamicSecondsColour} label="Match displayed measurement" />
         {props.settings[dynamicSecondsColour] === 'false' && (
           <ColorSelect settingsKey={secondsColour} colors={[{ color: blue }, { color: red }, { color: orange }]} />
