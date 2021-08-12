@@ -3,6 +3,8 @@ import { settingsStorage } from 'settings';
 import * as messaging from 'messaging';
 import { COLOURS, SETTINGS_KEYS, MEASUREMENT_CONTAINER_IDS } from '../common/constants';
 
+// settingsStorage.clear();
+
 const {
   backgroundColour,
   dateTextColour,
@@ -13,7 +15,7 @@ const {
   dynamicSecondsColour,
   measurementsDisplayed
 } = SETTINGS_KEYS;
-const keys = Object.keys(SETTINGS_KEYS);
+const keys = Object.keys(SETTINGS_KEYS).map((k) => SETTINGS_KEYS[k]);
 const settingsKeyDefaultValues = {
   [backgroundColour]: COLOURS.black,
   [dateTextColour]: COLOURS.white,
