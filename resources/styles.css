@@ -28,7 +28,7 @@ If other watches are upgraded to be compatible with OS 5, the hard values will n
   text-length: 34;
   text-anchor: middle;
   x: 50%;
-  y: 57%;
+  y: 59%;
   fill: #ffffff;
   font-family: System-Bold;
 }
@@ -39,7 +39,7 @@ If other watches are upgraded to be compatible with OS 5, the hard values will n
 
 .measurement-container {
   x: 35%;
-  y: 70%;
+  y: 75%;
   width: 44%;
   height: 26;
 }
